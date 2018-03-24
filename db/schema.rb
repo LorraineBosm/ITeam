@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180324173851) do
+ActiveRecord::Schema.define(version: 20180324192144) do
 
   create_table "device_brands", force: :cascade do |t|
     t.string "short_name", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20180324173851) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "phone_number", null: false
-    t.integer "device_model_id", null: false
+    t.integer "device_model_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["device_model_id"], name: "index_requests_on_device_model_id"
