@@ -72,7 +72,7 @@
                 <div class="device_brand">
                   <div class="text">Выбери марку устройства</div>
                     <%= f.grouped_collection_select :device_brand, DeviceType.order(:name),
-                                                    :device_brands, :name, :id, :short_name, { include_blank: false},
+                                                    :device_brands, :name, :id, :short_name, { include_blank: true },
                                                     {class: 'form-control text' } %>
                   <br>
                 </div>

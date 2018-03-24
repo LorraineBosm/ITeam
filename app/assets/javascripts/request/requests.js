@@ -10,17 +10,19 @@ $(document).ready(function() {
         paddingTop: 40,
     });
 
-    //$('#request_phone_model').parent().hide()
+    $('#request_phone_model').parent().hide()
     $('#request_device_brand').parent().hide();
     $('#request_device_model_id').parent().hide();
+    $('#request_device_model_id').val('');
     brands = $('#request_device_brand').html();
     models = $('#request_device_model_id').html();
     $('#request_device_type').change(function() {
         type = $('#request_device_type :selected').text();
         options = $(brands).filter("optgroup[label='" + type + "']").html();
+        options_with_blank = "<option value></option>" + options
         console.log('filtered brands: ' + options)
         if(options) {
-            $('#request_device_brand').html(options)
+            $('#request_device_brand').html(options_with_blank)
             $('#request_device_brand').parent().show()
 
         } else {
@@ -33,9 +35,10 @@ $(document).ready(function() {
     $('#request_device_brand').change(function() {
         brand = $('#request_device_brand :selected').text();
         options = $(models).filter("optgroup[label='" + brand + "']").html();
+        options_with_blank = "<option value></option>" + options
         console.log('filtered models: ' + options)
         if(options) {
-            $('#request_device_model_id').html(options)
+            $('#request_device_model_id').html(options_with_blank)
             $('#request_device_model_id').parent().show()
 
         } else {
