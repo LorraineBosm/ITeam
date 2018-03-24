@@ -1,5 +1,8 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
+/*# sourceMappingURL=jquery.fullpage.min.js.map */
+/*# sourceMappingURL=scrolloverflow.min.js.map */
+
 
 $(document).ready(function() {
     $('#fullpage').fullpage({
