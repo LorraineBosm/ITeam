@@ -10,7 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180324123924) do
+ActiveRecord::Schema.define(version: 20180324192144) do
+
+  create_table "device_brands", force: :cascade do |t|
+    t.string "short_name", null: false
+    t.string "full_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "device_type_id"
+    t.index ["device_type_id"], name: "index_device_brands_on_device_type_id"
+  end
+
+  create_table "device_models", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "code"
+    t.integer "device_brand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_brand_id"], name: "index_device_models_on_device_brand_id"
+  end
+
+  create_table "device_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.text "problem_desc", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "phone_number", null: false
+    t.integer "device_model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_model_id"], name: "index_requests_on_device_model_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
