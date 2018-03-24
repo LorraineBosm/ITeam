@@ -60,6 +60,6 @@ class RequestsController < ApplicationController
     end
 
     def request_params
-      params.require(:request).permit(:problem_desc, :first_name, :last_name, :phone_number)
+      params.require(:request).permit(:problem_desc, :first_name, :last_name, :phone_number, :device_model_id)
     end
 end

@@ -1,3 +1,13 @@
 // Place all the styles related to the Requests controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media (max-width: 1000px) {
+  img {
+    display: none;
+  }
+}
+
+.text {
+  font-size: 14pt;
+}
