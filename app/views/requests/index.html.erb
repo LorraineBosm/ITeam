@@ -21,7 +21,6 @@
         <td><%= request.last_name %></td>
         <td><%= request.phone_number %></td>
         <td><%= link_to 'Show', request %></td>
-        <td><%= link_to 'Edit', edit_request_path(request) %></td>
         <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -30,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Request', new_request_path %>
+<%= link_to 'New Request', start_requests_path %>

@@ -1,18 +1,11 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :destroy]
 
   def index
     @requests = Request.all
   end
 
   def show
-  end
-
-  def new
-    @request = Request.new
-  end
-
-  def edit
   end
 
   def create
@@ -24,18 +17,6 @@ class RequestsController < ApplicationController
         format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @request.update(request_params)
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
-      else
-        format.html { render :edit }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
