@@ -10,7 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180324123924) do
+ActiveRecord::Schema.define(version: 20180325140452) do
+
+  create_table "agreements", force: :cascade do |t|
+    t.string "agreement_code", null: false
+    t.string "imei", null: false
+    t.text "contents", null: false
+    t.text "problem", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "phone_number", null: false
+    t.boolean "is_printed", default: false, null: false
+    t.integer "device_model_id"
+    t.integer "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_model_id"], name: "index_agreements_on_device_model_id"
+    t.index ["request_id"], name: "index_agreements_on_request_id"
+  end
+
+  create_table "agreements_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "agreement_id"
+    t.index ["agreement_id"], name: "index_agreements_users_on_agreement_id"
+    t.index ["user_id"], name: "index_agreements_users_on_user_id"
+  end
+
+  create_table "device_brands", force: :cascade do |t|
+    t.string "short_name", null: false
+    t.string "full_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "device_type_id"
+    t.index ["device_type_id"], name: "index_device_brands_on_device_type_id"
+  end
+
+  create_table "device_models", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "code"
+    t.integer "device_brand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_brand_id"], name: "index_device_models_on_device_brand_id"
+  end
+
+  create_table "device_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.text "problem_desc", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "phone_number", null: false
+    t.integer "device_model_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["device_model_id"], name: "index_requests_on_device_model_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +84,7 @@ ActiveRecord::Schema.define(version: 20180324123924) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

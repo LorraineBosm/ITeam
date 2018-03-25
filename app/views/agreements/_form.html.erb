@@ -1,0 +1,51 @@
+<%= form_with(model: agreement, local: true) do |form| %>
+  <% if agreement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(agreement.errors.count, "error") %> prohibited this agreement from being saved:</h2>
+
+      <ul>
+      <% agreement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, id: :agreement_first_name, value: request.first_name, class: 'form-control text' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, id: :agreement_last_name, value: request.last_name, class: 'form-control text' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, id: :agreement_phone_number, value: request.phone_number, class: 'form-control text' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :imei %>
+    <%= form.text_field :imei, id: :agreement_imei, class: 'form-control text' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contents %>
+    <%= form.text_area :contents, id: :agreement_contents, class: 'form-control text' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :problem %>
+    <%= form.text_area :problem, id: :agreement_problem, value: request.problem_desc, class: 'form-control text' %>
+  </div>
+
+  <%= form.hidden_field :request_id, value: request.id %>
+  <%= form.hidden_field :device_model_id, value: request.device_model_id %>
+
+  <br>
+  <div class="actions">
+    <%= form.submit 'Submit', class: 'btn btn-primary btn-block' %>
+  </div>
+<% end %>
