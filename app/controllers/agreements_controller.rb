@@ -1,5 +1,6 @@
 class AgreementsController < ApplicationController
   before_action :set_agreement, only: [:show, :edit, :update, :destroy]
+  before_action :is_acceptor?
 
   def index
     @agreements = Agreement.all
