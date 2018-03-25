@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
+  before_action :is_acceptor?, only: [:index]
 
   def index
     @requests = Request.all
