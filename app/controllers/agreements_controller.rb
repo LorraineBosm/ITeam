@@ -11,7 +11,6 @@ class AgreementsController < ApplicationController
 
   def new
     @agreement = Agreement.new
-    # @request = Request.find(params[:id]) unless params[:id].nil?
     if params[:request_id].nil?
       @request = Request.new
     else
@@ -26,35 +25,24 @@ class AgreementsController < ApplicationController
     @agreement = Agreement.new(agreement_params)
     @agreement.agreement_code = 'AA' + DateTime.now.strftime('%Y%m%d').to_s + Random.rand(10..19).to_s
 
-    respond_to do |format|
-      if @agreement.save
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully created.' }
-        format.json { render :show, status: :created, location: @agreement }
-      else
-        format.html { render :new }
-        format.json { render json: @agreement.errors, status: :unprocessable_entity }
-      end
+    if @agreement.save
+      redirect_to @agreement, notice: 'Agreement was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @agreement.update(agreement_params)
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
-        format.json { render :show, status: :ok, location: @agreement }
-      else
-        format.html { render :edit }
-        format.json { render json: @agreement.errors, status: :unprocessable_entity }
-      end
+    if @agreement.update(agreement_params)
+      redirect_to @agreement, notice: 'Agreement was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @agreement.destroy
-    respond_to do |format|
-      format.html { redirect_to agreements_url, notice: 'Agreement was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to agreements_url, notice: 'Agreement was successfully destroyed.'
   end
 
   private
