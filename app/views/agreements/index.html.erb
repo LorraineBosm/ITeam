@@ -4,19 +4,33 @@
 
 <table>
   <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>IMEI</th>
+    <th>Contents</th>
+    <th>Problem</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone Number</th>
+    <th colspan="3"></th>
+    <th colspan="3"></th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @agreements.each do |agreemnt| %>
+  <% @agreements.each do |agreement| %>
       <tr>
-        <td><%= link_to 'Show', agreemnt %></td>
-        <td><%= link_to 'Edit', edit_agreement_path(agreemnt) %></td>
-        <td><%= link_to 'Destroy', agreemnt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= agreement.imei %></td>
+        <td><%= agreement.contents %></td>
+        <td><%= agreement.problem %></td>
+        <td><%= agreement.first_name %></td>
+        <td><%= agreement.last_name %></td>
+        <td><%= agreement.phone_number %></td>
+        <td><%= link_to 'Show', agreement %></td>
+        <td><%= link_to 'Edit', edit_agreement_path(agreement) unless agreement.is_printed? %></td>
+        <td><%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 

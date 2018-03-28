@@ -1,4 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_agreement_path(@agreement) %> |
-<%= link_to 'Back', agreements_path %>
+<h1>
+  <%= t('agreement') + ' ' + @agreement.agreement_code %>
+</h1>
+
+<p>
+  <strong>IMEI:</strong>
+  <%= @agreement.imei %>
+</p>
+
+<p>
+  <strong>Contents:</strong>
+  <%= @agreement.contents %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @agreement.problem %>
+</p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @agreement.first_name %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @agreement.last_name %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= @agreement.phone_number %>
+</p>
+
+<%= link_to 'Edit', edit_agreement_path(@agreement) unless @agreement.is_printed? %>

@@ -19,6 +19,12 @@ class AgreementsController < ApplicationController
   end
 
   def edit
+    redirect_to agreements_path if @agreement.is_printed?
+    if params[:request_id].nil?
+      @request = Request.new
+    else
+      @request = Request.find(params[:request_id])
+    end
   end
 
   def create
