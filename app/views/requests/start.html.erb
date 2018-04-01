@@ -24,15 +24,13 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-6">
-                <div class="text">Привет! Мы какая-то компания, которая умеет чинить телефоны</div>
-                <br>
-                <a href="#problem" class="btn btn-primary btn-lg btn-block">Рассказать о проблеме</a>
-              </div>
-              <div class="col-md-4">
-                <%= image_tag 'https://image.flaticon.com/icons/svg/236/236842.svg' %>
-              </div>
+            <div class="col-md-6">
+              <div class="text">Привет! Мы какая-то компания, которая умеет чинить телефоны</div>
+              <br>
+              <a href="#problem" class="btn btn-primary btn-lg btn-block">Рассказать о проблеме</a>
+            </div>
+            <div class="col-md-4">
+              <%= image_tag 'https://image.flaticon.com/icons/svg/236/236842.svg' %>
             </div>
           </div>
         </div>
@@ -40,16 +38,14 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-6">
-                <div class="text">Опиши свою проблему</div>
-                <%= f.text_area :problem_desc, class: 'form-control' %>
-                <br>
-                <a href="#device" class="btn btn-primary btn-lg btn-block text">Выбрать устройство</a>
-              </div>
-              <div class="col-md-4">
-                <%= image_tag 'https://image.flaticon.com/icons/svg/653/653273.svg'%>
-              </div>
+            <div class="col-md-6">
+              <div class="text">Опиши свою проблему</div>
+              <%= f.text_area :problem_desc, class: 'form-control' %>
+              <br>
+              <a href="#device" class="btn btn-primary btn-lg btn-block text">Выбрать устройство</a>
+            </div>
+            <div class="col-md-4">
+              <%= image_tag 'https://image.flaticon.com/icons/svg/653/653273.svg'%>
             </div>
           </div>
         </div>
@@ -57,31 +53,29 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-6">
-                <div class="text">Выбери тип устройства</div>
-                  <%= f.collection_select :device_type, DeviceType.order(:name), :id, :name, { include_blank: true},
-                                          {class: 'form-control text' } %>
+            <div class="col-md-6">
+              <div class="text">Выбери тип устройства</div>
+                <%= f.collection_select :device_type, DeviceType.order(:name), :id, :name, { include_blank: true},
+                                        {class: 'form-control text' } %>
+              <br>
+              <div class="device_brand">
+                <div class="text">Выбери марку устройства</div>
+                  <%= f.grouped_collection_select :device_brand, DeviceType.order(:name),
+                                                  :device_brands, :name, :id, :short_name, { include_blank: true },
+                                                  {class: 'form-control text' } %>
                 <br>
-                <div class="device_brand">
-                  <div class="text">Выбери марку устройства</div>
-                    <%= f.grouped_collection_select :device_brand, DeviceType.order(:name),
-                                                    :device_brands, :name, :id, :short_name, { include_blank: true },
-                                                    {class: 'form-control text' } %>
-                  <br>
-                </div>
-                <div class="device_model">
-                  <div class="text">Выбери модель устройства</div>
-                    <%= f.grouped_collection_select :device_model_id, DeviceBrand.order(:short_name),
-                                                    :device_models, :short_name, :id, :name, { include_blank: false},
-                                                    {class: 'form-control text' } %>
-                  <br>
-                </div>
-                <a href="#owner" class="btn btn-primary btn-lg btn-block text">Рассказать о себе</a>
               </div>
-              <div class="col-md-4">
-                <%= image_tag 'https://image.flaticon.com/icons/svg/141/141063.svg' %>
+              <div class="device_model">
+                <div class="text">Выбери модель устройства</div>
+                  <%= f.grouped_collection_select :device_model_id, DeviceBrand.order(:short_name),
+                                                  :device_models, :short_name, :id, :name, { include_blank: false},
+                                                  {class: 'form-control text' } %>
+                <br>
               </div>
+              <a href="#owner" class="btn btn-primary btn-lg btn-block text">Рассказать о себе</a>
+            </div>
+            <div class="col-md-4">
+              <%= image_tag 'https://image.flaticon.com/icons/svg/141/141063.svg' %>
             </div>
           </div>
         </div>
@@ -89,22 +83,20 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
-              <div class="col-md-6">
-                <div class="text">Имя</div>
-                <%= f.text_field :first_name, class: 'form-control text' %>
-                <br>
-                <div class="text">Фамилия</div>
-                <%= f.text_field :last_name, class: 'form-control text' %>
-                <br>
-                <div class="text">Номер телефона</div>
-                <%= f.text_field :phone_number, class: 'form-control text' %>
-                <br>
-                <%= f.submit "Создать заявку", class: 'btn btn-primary btn-lg btn-block text' %>
-              </div>
-              <div class="col-md-4">
-                <%= image_tag 'https://image.flaticon.com/icons/svg/265/265666.svg' %>
-              </div>
+            <div class="col-md-6">
+              <div class="text">Имя</div>
+              <%= f.text_field :first_name, class: 'form-control text' %>
+              <br>
+              <div class="text">Фамилия</div>
+              <%= f.text_field :last_name, class: 'form-control text' %>
+              <br>
+              <div class="text">Номер телефона</div>
+              <%= f.text_field :phone_number, class: 'form-control text' %>
+              <br>
+              <%= f.submit "Создать заявку", class: 'btn btn-primary btn-lg btn-block text' %>
+            </div>
+            <div class="col-md-4">
+              <%= image_tag 'https://image.flaticon.com/icons/svg/265/265666.svg' %>
             </div>
           </div>
         </div>
