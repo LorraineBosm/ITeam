@@ -13,7 +13,7 @@
  */
 
 @import "bootstrap";
-@import "request/*";
+@import "request/requests";
 
 .card-columns {
   @include media-breakpoint-only(xl) {
