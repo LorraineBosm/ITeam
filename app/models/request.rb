@@ -2,6 +2,7 @@ class Request < ApplicationRecord
   attr_accessor :device_type, :device_brand
 
   belongs_to :device_model, optional: true
+  has_one :agreement
 
   validates :problem_desc, presence: true
   validates :first_name, presence: true

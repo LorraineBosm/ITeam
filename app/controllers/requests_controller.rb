@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   before_action :is_acceptor?, only: [:index]
 
   def index
-    @requests = Request.all
+    @requests = Request.includes(:agreement).all
   end
 
   def show

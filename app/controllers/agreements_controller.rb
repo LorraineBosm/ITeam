@@ -10,6 +10,7 @@ class AgreementsController < ApplicationController
   end
 
   def new
+    redirect_to requests_path if check_exists
     @agreement = Agreement.new
     if params[:request_id].nil?
       @request = Request.new
@@ -59,5 +60,10 @@ class AgreementsController < ApplicationController
     def agreement_params
       params.require(:agreement).permit(:imei, :contents, :problem, :first_name, :last_name,
                                         :phone_number, :request_id, :device_model_id)
+    end
+
+    def check_exists
+      return false if (params[:request_id].nil? || Agreement.where(request_id: params[:request_id]).empty?)
+      true
     end
 end
