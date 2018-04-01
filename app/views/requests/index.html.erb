@@ -16,6 +16,7 @@
         <div class="card-footer">
           <%= link_to 'Show', request, class: 'btn btn-outline-secondary' %>
           <%= link_to 'New agreement', new_agreement_path(request_id: request.id), class: 'btn btn-outline-secondary' unless request.agreement %>
+          <%= link_to 'Destroy', request, method: :delete, class: 'btn btn-outline-danger' unless request.agreement %>
         </div>
       </div>
   <% end %>
