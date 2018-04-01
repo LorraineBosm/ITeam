@@ -21,3 +21,9 @@
     column-count: 3;
   }
 }
+
+#notice {
+  @extend .alert;
+  @extend .alert-info;
+  margin-top: 7px;
+}
