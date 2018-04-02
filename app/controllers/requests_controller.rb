@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
-  before_action :is_acceptor?, only: [:index]
+  before_action { has_role?('acceptor') }
 
   def index
     @requests = Request.includes(:agreement).all

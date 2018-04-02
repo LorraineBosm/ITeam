@@ -7,5 +7,12 @@ Rails.application.routes.draw do
       get :start
     end
   end
-  resources :agreements
+  resources :agreements do
+    member do
+      get :repair
+    end
+    collection do
+      get :in_repair
+    end
+  end
 end
