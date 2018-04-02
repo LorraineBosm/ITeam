@@ -2,38 +2,66 @@
     <p id="notice"><%= notice %></p>
 <% end %>
 
-<h1>
-  <%= t('agreement') + ' ' + @agreement.agreement_code %>
-</h1>
+<div class="col-md-6 border border-light rounded">
+  <h1>
+    <%= t('agreement') + ' ' + @agreement.agreement_code %>
+  </h1>
 
-<p>
-  <strong>IMEI:</strong>
-  <%= @agreement.imei %>
-</p>
+  <p>
+    <strong>IMEI:</strong>
+    <%= @agreement.imei %>
+  </p>
 
-<p>
-  <strong>Contents:</strong>
-  <%= @agreement.contents %>
-</p>
+  <p>
+    <strong>Contents:</strong>
+    <%= @agreement.contents %>
+  </p>
 
-<p>
-  <strong>Problem:</strong>
-  <%= @agreement.problem %>
-</p>
+  <p>
+    <strong>Problem:</strong>
+    <%= @agreement.problem %>
+  </p>
 
-<p>
-  <strong>First Name:</strong>
-  <%= @agreement.first_name %>
-</p>
+  <p>
+    <strong>First Name:</strong>
+    <%= @agreement.first_name %>
+  </p>
 
-<p>
-  <strong>Last Name:</strong>
-  <%= @agreement.last_name %>
-</p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= @agreement.last_name %>
+  </p>
 
-<p>
-  <strong>Phone Number:</strong>
-  <%= @agreement.phone_number %>
-</p>
+  <p>
+    <strong>Phone Number:</strong>
+    <%= @agreement.phone_number %>
+  </p>
 
-<%= link_to 'Edit', edit_agreement_path(@agreement) unless @agreement.is_printed? %>
+  <%= link_to 'Edit', edit_agreement_path(@agreement) unless @agreement.is_printed? %>
+</div>
+
+<div class="col-md-6 border border-light rounded">
+  <h1>
+    Request
+  </h1>
+
+  <p>
+    <strong>Problem desc:</strong>
+    <%= @request.problem_desc %>
+  </p>
+
+  <p>
+    <strong>First name:</strong>
+    <%= @request.first_name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= @request.last_name %>
+  </p>
+
+  <p>
+    <strong>Phone number:</strong>
+    <%= @request.phone_number %>
+  </p>
+</div>

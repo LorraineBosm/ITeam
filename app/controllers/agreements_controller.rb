@@ -7,6 +7,7 @@ class AgreementsController < ApplicationController
   end
 
   def show
+    @request = Request.find(@agreement.request_id)
   end
 
   def new
