@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402155139) do
+ActiveRecord::Schema.define(version: 20180402172605) do
 
   create_table "agreements", force: :cascade do |t|
     t.string "agreement_code", null: false
@@ -25,15 +25,10 @@ ActiveRecord::Schema.define(version: 20180402155139) do
     t.integer "request_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "acceptor_id", null: false
+    t.integer "technician_id"
     t.index ["device_model_id"], name: "index_agreements_on_device_model_id"
     t.index ["request_id"], name: "index_agreements_on_request_id"
-  end
-
-  create_table "agreements_users", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "agreement_id"
-    t.index ["agreement_id"], name: "index_agreements_users_on_agreement_id"
-    t.index ["user_id"], name: "index_agreements_users_on_user_id"
   end
 
   create_table "device_brands", force: :cascade do |t|
