@@ -7,6 +7,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active"><%= link_to t('Home'), root_path, class: 'nav-link' %></li>
+            <% if has_role?('acceptor') %>
+          <li><%= link_to 'Agreements', agreements_path, class: 'nav-link'%></li>
+          <li><%= link_to 'Requests', requests_path, class: 'nav-link'%></li>
+      <% end %>
+
       <% if user_signed_in? %>
           <li><%= link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
       <% else %>
