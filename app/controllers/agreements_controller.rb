@@ -31,6 +31,7 @@ class AgreementsController < ApplicationController
   def create
     @agreement = Agreement.new(agreement_params)
     @agreement.agreement_code = 'AA' + DateTime.now.strftime('%Y%m%d').to_s + Random.rand(10..19).to_s
+    @agreement.acceptor_id = current_user.id
 
     if @agreement.save
       redirect_to @agreement, notice: 'Agreement was successfully created.'
