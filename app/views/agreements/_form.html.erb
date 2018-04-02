@@ -27,6 +27,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :device_model %>
+    <%= form.grouped_collection_select :device_model_id, DeviceBrand.order(:short_name),
+                                    :device_models, :short_name, :id, :name, { include_blank: true, selected: request.device_model_id },
+                                    {class: 'form-control text' } %>
+  </div>
+
+  <div class="field">
     <%= form.label :imei %>
     <%= form.text_field :imei, id: :agreement_imei, class: 'form-control text' %>
   </div>
