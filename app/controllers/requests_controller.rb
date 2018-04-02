@@ -1,9 +1,9 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
-  before_action :is_acceptor?, only: [:index]
+  before_action { has_role?('acceptor') }
 
   def index
-    @requests = Request.all
+    @requests = Request.includes(:agreement).all
   end
 
   def show
@@ -12,23 +12,16 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
 
-    respond_to do |format|
-      if @request.save
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
-      else
-        format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
-      end
+    if @request.save
+      redirect_to @request, notice: 'Request was successfully created.'
+    else
+      render :new
     end
   end
 
   def destroy
     @request.destroy
-    respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to requests_url, notice: 'Request was successfully destroyed.'
   end
 
   def start

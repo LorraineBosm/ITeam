@@ -1,24 +1,27 @@
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">ITeam</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active"><%= link_to t('Home'), root_path, class: 'nav-link' %></li>
+      <% if has_role?('acceptor') %>
+          <li><%= link_to 'Agreements', agreements_path, class: 'nav-link'%></li>
+          <li><%= link_to 'Requests', requests_path, class: 'nav-link'%></li>
+      <% end %>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul id="navigation" class="nav nav-justified">
-        <% if user_signed_in? %>
-            <li><%= link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
-        <% else %>
-            <li><%= link_to t('devise.sessions.sign_in'), new_user_session_path, class: 'nav-link' %></li>
-            <li><%= link_to t('devise.registrations.sign_up'), new_user_registration_path, class: 'nav-link' %></li>
-        <% end %>
-      </ul>
-    </div>
+      <% if has_role?('technician') %>
+          <li><%= link_to 'In Repair', in_repair_agreements_path, class: 'nav-link'%></li>
+      <% end %>
+
+      <% if user_signed_in? %>
+          <li><%= link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
+      <% else %>
+          <li><%= link_to t('devise.sessions.sign_in'), new_user_session_path, class: 'nav-link' %></li>
+          <li><%= link_to t('devise.registrations.sign_up'), new_user_registration_path, class: 'nav-link' %></li>
+      <% end %>
+    </ul>
   </div>
 </nav>

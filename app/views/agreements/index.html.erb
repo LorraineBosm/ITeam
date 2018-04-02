@@ -1,25 +1,33 @@
-<p id="notice"><%= notice %></p>
+<% unless notice.nil? %>
+    <p id="notice"><%= notice %></p>
+<% end %>
 
 <h1>Agreements</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @agreements.each do |agreemnt| %>
-      <tr>
-        <td><%= link_to 'Show', agreemnt %></td>
-        <td><%= link_to 'Edit', edit_agreement_path(agreemnt) %></td>
-        <td><%= link_to 'Destroy', agreemnt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div>
+  <%= link_to 'New Agreement', new_agreement_path, class: 'btn btn-outline-secondary' %>
+</div>
 
 <br>
 
-<%= link_to 'New Agreement', new_agreement_path %>
+<div class="card-columns">
+  <% @agreements.each do |agreement| %>
+      <div class="card">
+        <div class="card-header">
+          <div class="agreement-name">
+            <%= agreement.agreement_code %>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">First Name: <%= agreement.first_name %></li>
+          <li class="list-group-item">Last Name: <%= agreement.last_name %></li>
+          <li class="list-group-item">Phone Number: <%= agreement.phone_number %></li>
+        </ul>
+        <div class="card-footer">
+          <%= link_to 'Show', agreement, class: 'btn btn-outline-secondary' %>
+          <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-outline-secondary' unless agreement.is_printed? %>
+          <%= link_to 'Start repair', repair_agreement_path(agreement), class: 'btn btn-outline-secondary' if agreement.technician_id.nil? && has_role?('technician') %>
+        </div>
+      </div>
+  <% end %>
+</div>

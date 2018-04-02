@@ -1,6 +1,10 @@
+<% unless notice.nil? %>
+    <p id="notice"><%= notice %></p>
+<% end %>
+
 <h1>Editing Agreement</h1>
 
-<%= render 'form', agreemnt: @agreement %>
+<%= render 'form', agreement: @agreement, request: @request %>
 
 <%= link_to 'Show', @agreement %> |
 <%= link_to 'Back', agreements_path %>
