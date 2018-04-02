@@ -1,5 +1,5 @@
 class AgreementsController < ApplicationController
-  before_action :set_agreement, only: [:show, :edit, :update, :destroy]
+  before_action :set_agreement, only: [:show, :edit, :update, :destroy, :repair]
   before_action { has_role?('acceptor') }
 
   def index
@@ -51,6 +51,16 @@ class AgreementsController < ApplicationController
   def destroy
     @agreement.destroy
     redirect_to agreements_url, notice: 'Agreement was successfully destroyed.'
+  end
+
+  def repair
+    @agreement.update!(technician_id: current_user.id)
+    render :show
+  end
+
+  def in_repair
+    @agreements = Agreement.where(technician_id: current_user.id)
+    render :index
   end
 
   private
