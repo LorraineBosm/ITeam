@@ -7,12 +7,15 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <body>
+    <%= custom_bootstrap_flash %>
     <%= render '/shared/navbar', locals: {caller: :application_template } %>
 
     <div class="container">
