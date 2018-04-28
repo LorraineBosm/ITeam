@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :destroy]
-  before_action except: [:start] { has_access?('acceptor') }
+  before_action except: [:start, :create] { has_access?('acceptor') }
 
   def index
     @requests = Request.includes(:agreement).all
