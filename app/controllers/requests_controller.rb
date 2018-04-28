@@ -15,7 +15,7 @@ class RequestsController < ApplicationController
     if @request.save
       redirect_to @request, notice: 'Request was successfully created.'
     else
-      render :new
+      render :start, layout: 'application_clean'
     end
   end
 

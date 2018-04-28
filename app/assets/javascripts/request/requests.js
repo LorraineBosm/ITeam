@@ -49,5 +49,9 @@ $(document).ready(function() {
             $('#request_device_model_id').parent().hide()
         }
 
-    })
+    });
+
+    $(window).on('load',function(){
+        $('#errorModal').modal('show');
+    });
 });
