@@ -1,6 +1,7 @@
 class AgreementsController < ApplicationController
   before_action :set_agreement, only: [:show, :edit, :update, :destroy, :repair]
-  before_action { has_access?('acceptor') }
+  before_action except: [:repair, :in_repair] { has_access?('acceptor') }
+  before_action only: [:repair, :in_repair] { has_access?('technician') }
 
   def index
     @agreements = Agreement.all
