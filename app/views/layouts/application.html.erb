@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <%= render '/shared/navbar' %>
+    <%= render '/shared/navbar', locals: {caller: :application_template } %>
 
     <div class="container">
       <div class="row">
