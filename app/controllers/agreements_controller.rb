@@ -7,7 +7,7 @@ class AgreementsController < ApplicationController
   end
 
   def show
-    @request = Request.find(@agreement.request_id)
+    @request = Request.find(@agreement.request_id) unless @agreement.request_id.nil?
   end
 
   def new

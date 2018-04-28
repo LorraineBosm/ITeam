@@ -36,28 +36,30 @@
   <%= link_to 'Edit', edit_agreement_path(@agreement) unless @agreement.is_printed? %>
 </div>
 
-<div class="col-md-6 border border-light rounded">
-  <h1>
-    Request
-  </h1>
+<% unless @request.nil? %>
+    <div class="col-md-6 border border-light rounded">
+      <h1>
+        Request
+      </h1>
 
-  <p>
-    <strong>Problem desc:</strong>
-    <%= @request.problem_desc %>
-  </p>
+      <p>
+        <strong>Problem desc:</strong>
+        <%= @request.problem_desc %>
+      </p>
 
-  <p>
-    <strong>First name:</strong>
-    <%= @request.first_name %>
-  </p>
+      <p>
+        <strong>First name:</strong>
+        <%= @request.first_name %>
+      </p>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= @request.last_name %>
-  </p>
+      <p>
+        <strong>Last name:</strong>
+        <%= @request.last_name %>
+      </p>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= @request.phone_number %>
-  </p>
-</div>
+      <p>
+        <strong>Phone number:</strong>
+        <%= @request.phone_number %>
+      </p>
+    </div>
+<% end %>
