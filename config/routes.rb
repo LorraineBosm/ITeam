@@ -16,6 +16,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :analytics, except: %i(show, new, edit, create, update, destroy) do
+  resources :analytics, only: :index do
+    collection do
+      get :requests
+      get :agreements
+      get :users
+    end
   end
 end
