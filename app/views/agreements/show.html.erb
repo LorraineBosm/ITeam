@@ -1,7 +1,3 @@
-<% unless notice.nil? %>
-    <p id="notice"><%= notice %></p>
-<% end %>
-
 <div class="col-md-6 border border-light rounded">
   <h1>
     <%= t('agreement') + ' ' + @agreement.agreement_code %>
@@ -37,31 +33,56 @@
     <%= @agreement.phone_number %>
   </p>
 
+  <div class="progress" id="progress_bar" style="height: 30px;">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress_bar_line" style="width: <%= @agreement.percentage || 0 %>%"><%= @agreement.percentage %>% - <%= @agreement.status %></div>
+  </div>
+
+  <div class="modal fade" id="update_progress" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Progress</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= form_with(model: @agreement) do |f|%>
+              <%= f.text_field :percentage %>
+              <%= f.submit class: 'btn btn-primary', id: 'update_percentage' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <%= link_to 'Edit', edit_agreement_path(@agreement) unless @agreement.is_printed? %>
 </div>
 
-<div class="col-md-6 border border-light rounded">
-  <h1>
-    Request
-  </h1>
+<% unless @request.nil? %>
+    <div class="col-md-6 border border-light rounded">
+      <h1>
+        Request
+      </h1>
 
-  <p>
-    <strong>Problem desc:</strong>
-    <%= @request.problem_desc %>
-  </p>
+      <p>
+        <strong>Problem desc:</strong>
+        <%= @request.problem_desc %>
+      </p>
 
-  <p>
-    <strong>First name:</strong>
-    <%= @request.first_name %>
-  </p>
+      <p>
+        <strong>First name:</strong>
+        <%= @request.first_name %>
+      </p>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= @request.last_name %>
-  </p>
+      <p>
+        <strong>Last name:</strong>
+        <%= @request.last_name %>
+      </p>
 
-  <p>
-    <strong>Phone number:</strong>
-    <%= @request.phone_number %>
-  </p>
-</div>
+      <p>
+        <strong>Phone number:</strong>
+        <%= @request.phone_number %>
+      </p>
+    </div>
+<% end %>

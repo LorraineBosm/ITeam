@@ -33,6 +33,9 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 # Reset sequence - for proper seeds generation
 gem 'activerecord-reset-pk-sequence', '~> 0.2.1'
 
+# Popups
+gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

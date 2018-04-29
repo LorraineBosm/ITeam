@@ -1,13 +1,14 @@
 class AgreementsController < ApplicationController
   before_action :set_agreement, only: [:show, :edit, :update, :destroy, :repair]
-  before_action { has_access?('acceptor') }
+  before_action except: [:repair, :in_repair] { has_access?('acceptor') }
+  before_action only: [:repair, :in_repair] { has_access?('technician') }
 
   def index
     @agreements = Agreement.all
   end
 
   def show
-    @request = Request.find(@agreement.request_id)
+    @request = Request.find(@agreement.request_id) unless @agreement.request_id.nil?
   end
 
   def new
@@ -42,10 +43,18 @@ class AgreementsController < ApplicationController
   end
 
   def update
-    if @agreement.update(agreement_params)
-      redirect_to @agreement, notice: 'Agreement was successfully updated.'
+    @agreement.update_attributes(agreement_params)
+    @agreement.status = :repaired if @agreement.percentage == 100
+    if @agreement.save!
+      respond_to do |format|
+        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
+        format.js
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.js
+      end
     end
   end
 
@@ -55,7 +64,7 @@ class AgreementsController < ApplicationController
   end
 
   def repair
-    @agreement.update!(technician_id: current_user.id)
+    @agreement.update!(technician_id: current_user.id, status: 1)
     render :show
   end
 
@@ -65,17 +74,16 @@ class AgreementsController < ApplicationController
   end
 
   private
-    def set_agreement
-      @agreement = Agreement.find(params[:id])
-    end
+  def set_agreement
+    @agreement = Agreement.find(params[:id])
+  end
 
-    def agreement_params
-      params.require(:agreement).permit(:imei, :contents, :problem, :first_name, :last_name,
-                                        :phone_number, :request_id, :device_model_id)
-    end
+  def agreement_params
+    params.require(:agreement).permit(:imei, :contents, :problem, :first_name, :last_name, :phone_number, :request_id, :device_model_id, :percentage)
+  end
 
-    def check_exists
-      return false if (params[:request_id].nil? || Agreement.where(request_id: params[:request_id]).empty?)
-      true
-    end
+  def check_exists
+    return false if params[:request_id].nil? || Agreement.where(request_id: params[:request_id]).empty?
+    true
+  end
 end
