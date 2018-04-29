@@ -23,4 +23,10 @@ Rails.application.routes.draw do
       get :users
     end
   end
+
+  resources :profiles, only: [] do
+    collection do
+      get :my_profile
+    end
+  end
 end
