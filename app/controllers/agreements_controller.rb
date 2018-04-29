@@ -11,7 +11,7 @@ class AgreementsController < ApplicationController
     @request = Request.find(@agreement.request_id) unless @agreement.request_id.nil?
     respond_to do |format|
       format.html
-      format.pdf { render pdf: 'agreements/show' }
+      format.pdf { render pdf: 'agreement', template: 'agreements/show.pdf', encoding: 'utf8' }
     end
   end
 
@@ -79,7 +79,7 @@ class AgreementsController < ApplicationController
 
   private
   def set_agreement
-    @agreement = Agreement.find(params[:id])
+    @agreement = Agreement.includes(device_model: [device_brand: [:device_type]]).find(params[:id])
   end
 
   def agreement_params
