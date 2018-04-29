@@ -40,6 +40,10 @@ gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 gem 'chartkick', '~> 2.3', '>= 2.3.4'
 gem 'groupdate', '~> 4.0'
 
+# PDF generation
+gem 'wkhtmltopdf-heroku', '~> 2.12', '>= 2.12.4.0'
+gem 'wicked_pdf', '~> 1.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

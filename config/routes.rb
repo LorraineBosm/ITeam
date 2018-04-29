@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   resources :agreements do
     member do
-      get :repair
+      get :start_repair
     end
     collection do
       get :in_repair

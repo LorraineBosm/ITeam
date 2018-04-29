@@ -56,7 +56,8 @@
     </div>
   </div>
 
-  <%= link_to 'Edit', edit_agreement_path(@agreement) unless @agreement.is_printed? %>
+  <%= link_to 'Edit', edit_agreement_path(@agreement), class: 'btn btn-outline-primary' %>
+  <%= link_to 'Print', agreement_path(@agreement, format: :pdf), class: 'btn btn-outline-primary' %>
 </div>
 
 <% unless @request.nil? %>

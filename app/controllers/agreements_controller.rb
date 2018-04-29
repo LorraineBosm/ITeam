@@ -1,5 +1,5 @@
 class AgreementsController < ApplicationController
-  before_action :set_agreement, only: [:show, :edit, :update, :destroy, :repair]
+  before_action :set_agreement, only: [:show, :edit, :update, :destroy, :start_repair]
   before_action except: [:repair, :in_repair] { has_access?('acceptor') }
   before_action only: [:repair, :in_repair] { has_access?('technician') }
 
@@ -9,6 +9,10 @@ class AgreementsController < ApplicationController
 
   def show
     @request = Request.find(@agreement.request_id) unless @agreement.request_id.nil?
+    respond_to do |format|
+      format.html
+      format.pdf { render pdf: 'agreement', template: 'agreements/show.pdf', encoding: 'utf8' }
+    end
   end
 
   def new
@@ -22,7 +26,6 @@ class AgreementsController < ApplicationController
   end
 
   def edit
-    redirect_to agreements_path if @agreement.is_printed?
     if params[:request_id].nil?
       @request = Request.new
     else
@@ -63,19 +66,19 @@ class AgreementsController < ApplicationController
     redirect_to agreements_url, notice: 'Agreement was successfully destroyed.'
   end
 
-  def repair
+  def start_repair
     @agreement.update!(technician_id: current_user.id, status: 1)
     render :show
   end
 
   def in_repair
-    @agreements = Agreement.where(technician_id: current_user.id)
+    @agreements = Agreement.where(technician_id: current_user.id, status: 1)
     render :index
   end
 
   private
   def set_agreement
-    @agreement = Agreement.find(params[:id])
+    @agreement = Agreement.includes(device_model: [device_brand: [:device_type]]).find(params[:id])
   end
 
   def agreement_params
