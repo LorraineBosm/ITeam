@@ -36,6 +36,9 @@ gem 'activerecord-reset-pk-sequence', '~> 0.2.1'
 # Popups
 gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 
+# Chartkick (for charts)
+gem 'chartkick', '~> 2.3', '>= 2.3.4'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
