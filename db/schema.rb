@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180429210744) do
+ActiveRecord::Schema.define(version: 20180429213310) do
 
   create_table "agreements", force: :cascade do |t|
     t.string "agreement_code", null: false
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20180429210744) do
     t.integer "percentage"
     t.index ["device_model_id"], name: "index_agreements_on_device_model_id"
     t.index ["request_id"], name: "index_agreements_on_request_id"
+  end
+
+  create_table "agreements_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "agreement_id", null: false
+    t.index ["agreement_id"], name: "index_agreements_users_on_agreement_id"
+    t.index ["user_id"], name: "index_agreements_users_on_user_id"
   end
 
   create_table "device_brands", force: :cascade do |t|
