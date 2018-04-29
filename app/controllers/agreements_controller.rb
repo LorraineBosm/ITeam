@@ -1,5 +1,5 @@
 class AgreementsController < ApplicationController
-  before_action :set_agreement, only: [:show, :edit, :update, :destroy, :repair]
+  before_action :set_agreement, only: [:show, :edit, :update, :destroy, :start_repair]
   before_action except: [:repair, :in_repair] { has_access?('acceptor') }
   before_action only: [:repair, :in_repair] { has_access?('technician') }
 
@@ -66,13 +66,13 @@ class AgreementsController < ApplicationController
     redirect_to agreements_url, notice: 'Agreement was successfully destroyed.'
   end
 
-  def repair
+  def start_repair
     @agreement.update!(technician_id: current_user.id, status: 1)
     render :show
   end
 
   def in_repair
-    @agreements = Agreement.where(technician_id: current_user.id)
+    @agreements = Agreement.where(technician_id: current_user.id, status: 1)
     render :index
   end
 
