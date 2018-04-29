@@ -9,6 +9,10 @@ class AgreementsController < ApplicationController
 
   def show
     @request = Request.find(@agreement.request_id) unless @agreement.request_id.nil?
+    respond_to do |format|
+      format.html
+      format.pdf { render pdf: 'agreements/show' }
+    end
   end
 
   def new
