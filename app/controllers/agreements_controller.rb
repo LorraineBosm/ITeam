@@ -44,9 +44,15 @@ class AgreementsController < ApplicationController
 
   def update
     if @agreement.update(agreement_params)
-      redirect_to @agreement, notice: 'Agreement was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
+        format.js
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.js
+      end
     end
   end
 
@@ -56,7 +62,7 @@ class AgreementsController < ApplicationController
   end
 
   def repair
-    @agreement.update!(technician_id: current_user.id)
+    @agreement.update!(technician_id: current_user.id, status: 1)
     render :show
   end
 
@@ -72,7 +78,7 @@ class AgreementsController < ApplicationController
 
     def agreement_params
       params.require(:agreement).permit(:imei, :contents, :problem, :first_name, :last_name,
-                                        :phone_number, :request_id, :device_model_id)
+                                        :phone_number, :request_id, :device_model_id, :percentage)
     end
 
     def check_exists

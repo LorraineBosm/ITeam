@@ -54,4 +54,8 @@ $(document).ready(function() {
     $(window).on('load',function(){
         $('#errorModal').modal('show');
     });
+
+    $('#progress_bar').click(function() {
+        $('#update_progress').modal('show');
+    })
 });
