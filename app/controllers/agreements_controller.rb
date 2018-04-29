@@ -26,7 +26,6 @@ class AgreementsController < ApplicationController
   end
 
   def edit
-    redirect_to agreements_path if @agreement.is_printed?
     if params[:request_id].nil?
       @request = Request.new
     else

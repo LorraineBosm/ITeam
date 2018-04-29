@@ -21,7 +21,7 @@
         </ul>
         <div class="card-footer">
           <%= link_to 'Show', agreement, class: 'btn btn-outline-secondary' %>
-          <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-outline-secondary' unless agreement.is_printed? %>
+          <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-outline-secondary' %>
           <%= link_to 'Start repair', repair_agreement_path(agreement), class: 'btn btn-outline-secondary' if agreement.technician_id.nil? && has_role?('technician') %>
         </div>
       </div>

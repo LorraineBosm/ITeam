@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428204508) do
+ActiveRecord::Schema.define(version: 20180429210744) do
 
   create_table "agreements", force: :cascade do |t|
     t.string "agreement_code", null: false
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20180428204508) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "phone_number", null: false
-    t.boolean "is_printed", default: false, null: false
     t.integer "device_model_id"
     t.integer "request_id"
     t.datetime "created_at", null: false
