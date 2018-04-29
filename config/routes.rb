@@ -15,4 +15,12 @@ Rails.application.routes.draw do
       get :in_repair
     end
   end
+
+  resources :analytics, only: :index do
+    collection do
+      get :requests
+      get :agreements
+      get :users
+    end
+  end
 end
