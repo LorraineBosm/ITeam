@@ -6,3 +6,7 @@
 <% if has_role?('technician') %>
     <li><%= link_to 'In Repair', in_repair_agreements_path, class: 'nav-link'%></li>
 <% end %>
+
+<% if has_role?('analyst') %>
+    <li><%= link_to 'Analytics', analytics_path, class: 'nav-link'%></li>
+<% end %>
