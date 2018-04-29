@@ -43,7 +43,9 @@ class AgreementsController < ApplicationController
   end
 
   def update
-    if @agreement.update(agreement_params)
+    @agreement.update_attributes(agreement_params)
+    @agreement.status = :repaired if @agreement.percentage == 100
+    if @agreement.save!
       respond_to do |format|
         format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
         format.js
@@ -72,17 +74,16 @@ class AgreementsController < ApplicationController
   end
 
   private
-    def set_agreement
-      @agreement = Agreement.find(params[:id])
-    end
+  def set_agreement
+    @agreement = Agreement.find(params[:id])
+  end
 
-    def agreement_params
-      params.require(:agreement).permit(:imei, :contents, :problem, :first_name, :last_name,
-                                        :phone_number, :request_id, :device_model_id, :percentage)
-    end
+  def agreement_params
+    params.require(:agreement).permit(:imei, :contents, :problem, :first_name, :last_name, :phone_number, :request_id, :device_model_id, :percentage)
+  end
 
-    def check_exists
-      return false if (params[:request_id].nil? || Agreement.where(request_id: params[:request_id]).empty?)
-      true
-    end
+  def check_exists
+    return false if params[:request_id].nil? || Agreement.where(request_id: params[:request_id]).empty?
+    true
+  end
 end
