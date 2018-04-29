@@ -11,6 +11,7 @@ $(document).ready(function() {
         sectionsColor: ['#4CAF50', '#FF5722', '#00BCD4', '#009688'],
         anchors: ['about_us', 'problem', 'device', 'owner'],
         paddingTop: 40,
+        navigation:true,
     });
 
     $('#request_phone_model').parent().hide()
