@@ -1,4 +1,5 @@
 class AnalyticsController < ApplicationController
+  before_action { has_access?('analyst') }
   def index
   end
 
