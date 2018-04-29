@@ -15,4 +15,7 @@ Rails.application.routes.draw do
       get :in_repair
     end
   end
+
+  resources :analytics, except: %i(show, new, edit, create, update, destroy) do
+  end
 end
