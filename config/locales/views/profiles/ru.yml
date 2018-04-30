@@ -1,0 +1,5 @@
+ru:
+  profiles:
+    my_profile:
+      welcome_back_message: "Рады видеть вас снова"
+      my_agreements: "Мои ремонты"
