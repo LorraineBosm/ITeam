@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :agreements do
     member do
       get :start_repair
+      get :additional_device_info
     end
     collection do
       get :in_repair

@@ -1,7 +1,10 @@
+require 'net/http'
+require 'json'
+
 class AgreementsController < ApplicationController
-  before_action :set_agreement, only: [:show, :edit, :update, :destroy, :start_repair]
-  before_action except: [:repair, :in_repair] { has_access?('acceptor') }
-  before_action only: [:repair, :in_repair] { has_access?('technician') }
+  before_action :set_agreement, only: [:show, :edit, :update, :destroy, :start_repair, :additional_device_info]
+  before_action except: [:start_repair, :in_repair] { has_access?('acceptor') }
+  before_action only: [:start_repair, :in_repair, :additional_device_info] { has_access?('technician') }
 
   def index
     @agreements = Agreement.all
@@ -35,7 +38,7 @@ class AgreementsController < ApplicationController
 
   def create
     @agreement = Agreement.new(agreement_params)
-    @agreement.agreement_code = DateTime.now.strftime('%y%-m%-d%l%M%S').to_s + Random.rand(100..999).to_s
+    @agreement.agreement_code = DateTime.now.strftime('%y%-m%-d%I%M%S').to_s + Random.rand(100..999).to_s
     @agreement.acceptor_id = current_user.id
 
     if @agreement.save
@@ -74,6 +77,18 @@ class AgreementsController < ApplicationController
   def in_repair
     @agreements = Agreement.where(technician_id: current_user.id, status: 1)
     render :index
+  end
+
+  def additional_device_info
+    allowed_keys = %w(devicename brand technology gprs edge announced status dimensions weight sim)
+    token = 'dd8bbae67793cbd9001e08e3bc6178e79b6d424818e53940'
+    url = "https://fonoapi.freshpixl.com/v1/getdevice?token=#{token}&device=#{@agreement.device_model.name}"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    @parsed_json = JSON.parse(response)[0].nil? ? "{\"error\": \"no info\"}" : JSON.parse(response)[0].reject! {|k, v| !allowed_keys.include?(k.downcase)}.to_json
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

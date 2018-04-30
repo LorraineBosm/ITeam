@@ -8,6 +8,7 @@ ru:
     contents: "Комплект поставки"
     problem: "Жалоба"
     status: "Статус"
+    model: "Модель телефона"
 
     edit:
       edit_agreement: "Отредактировать договор"

@@ -1,7 +1,12 @@
-<div class="col-md-6 border border-light rounded">
+<div class="card col-md-6 border border-light rounded">
   <h1>
     <%= t('.agreement') + ' №' + @agreement.agreement_code %>
   </h1>
+
+  <p>
+    <strong><%= t('agreements.model') %>:</strong>
+    <u id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></u>
+  </p>
 
   <p>
     <strong><%= t('agreements.imei') %>:</strong>
@@ -66,7 +71,7 @@
 </div>
 
 <% unless @request.nil? %>
-    <div class="col-md-6 border border-light rounded">
+    <div class="card col-md-6 border border-light rounded">
       <h1>
         Request
       </h1>
@@ -92,3 +97,18 @@
       </p>
     </div>
 <% end %>
+
+<div class="additional-info-container col-md-6">
+
+</div>
+
+
+<script>
+  $("#additional-info").click(function(){
+      $.ajax({
+          url: '/agreements/<%= @agreement.id%>/additional_device_info',
+          type: 'GET'
+      });
+      $(".additional-info-container").append('<div class="loader" id="loader"></div>');
+  })
+</script>
