@@ -1,6 +1,6 @@
 <div class="card col-md-6 border border-light rounded">
   <h1>
-    <%= t('.agreement') + ' №' + @agreement.agreement_code %>
+    <%= t('model.agreement') + ' №' + @agreement.agreement_code %>
   </h1>
 
   <p>
@@ -73,26 +73,26 @@
 <% unless @request.nil? %>
     <div class="card col-md-6 border border-light rounded">
       <h1>
-        Request
+        <%= t('model.request') %>
       </h1>
 
       <p>
-        <strong>Problem desc:</strong>
+        <strong><%= t('requests.show.problem_desc') %>:</strong>
         <%= @request.problem_desc %>
       </p>
 
       <p>
-        <strong>First name:</strong>
+        <strong><%= t('requests.first_name') %>:</strong>
         <%= @request.first_name %>
       </p>
 
       <p>
-        <strong>Last name:</strong>
+        <strong><%= t('requests.last_name') %>:</strong>
         <%= @request.last_name %>
       </p>
 
       <p>
-        <strong>Phone number:</strong>
+        <strong><%= t('requests.phone_number') %>:</strong>
         <%= @request.phone_number %>
       </p>
     </div>

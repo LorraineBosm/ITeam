@@ -1,4 +1,6 @@
 ru:
+  model:
+    agreement: "Договор"
   agreement:
     untouched: "Ремонт не начат"
     in_repair: "В ремонте"
