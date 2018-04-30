@@ -8,8 +8,8 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active"><%= link_to t('Home'), root_path, class: 'nav-link' %></li>
 
-      <%= render 'shared/customer_navbar_buttons' if locals[:caller] == :start_page  %>
-      <%= render 'shared/employee_navbar_buttons' %>
+      <%= render 'shared/start_page_navbar_buttons' if locals[:caller] == :start_page  %>
+      <%= render 'shared/authorized_user_navbar_buttons' %>
 
       <% if user_signed_in? %>
           <li><%= link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
