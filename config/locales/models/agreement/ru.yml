@@ -1,0 +1,5 @@
+ru:
+  agreement:
+    untouched: "Ремонт не начат"
+    in_repair: "В ремонте"
+    repaired: "Отремонтирован"
