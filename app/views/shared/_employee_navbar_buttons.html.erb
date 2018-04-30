@@ -10,3 +10,7 @@
 <% if has_role?('analyst') %>
     <li><%= link_to 'Analytics', analytics_path, class: 'nav-link'%></li>
 <% end %>
+
+<% if has_role?('customer') %>
+    <li><%= link_to 'My Profile', my_profile_profiles_path, class: 'nav-link'%></li>
+<% end %>
