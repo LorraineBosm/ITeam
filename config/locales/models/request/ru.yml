@@ -1,0 +1,22 @@
+ru:
+  model:
+    request: "Запрос на ремонт"
+  activerecord:
+    attributes:
+      request:
+        problem_desc: "Описание проблемы"
+        first_name: "Имя"
+        last_name: "Фамилия"
+        phone_number: "Номер телефона"
+    errors:
+      models:
+        request:
+          attributes:
+            problem_desc:
+              blank: "не может быть пустым"
+            first_name:
+              blank: "не может быть пустым"
+            last_name:
+              blank: "не может быть пустой"
+            phone_number:
+              blank: "не может быть пустым"

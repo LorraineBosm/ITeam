@@ -1,7 +1,7 @@
-<h1>Agreements</h1>
+<h1><%= t('.agreements') %></h1>
 
 <div>
-  <%= link_to 'New Agreement', new_agreement_path, class: 'btn btn-outline-secondary' %>
+  <%= link_to t('.new_agreement'), new_agreement_path, class: 'btn btn-outline-secondary' %>
 </div>
 
 <br>
@@ -15,14 +15,14 @@
           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">First Name: <%= agreement.first_name %></li>
-          <li class="list-group-item">Last Name: <%= agreement.last_name %></li>
-          <li class="list-group-item">Phone Number: <%= agreement.phone_number %></li>
+          <li class="list-group-item"><%= t('agreements.first_name') %> <%= agreement.first_name %></li>
+          <li class="list-group-item"><%= t('agreements.last_name') %> <%= agreement.last_name %></li>
+          <li class="list-group-item"><%= t('agreements.phone_number') %> <%= agreement.phone_number %></li>
         </ul>
         <div class="card-footer">
-          <%= link_to 'Show', agreement, class: 'btn btn-outline-secondary' %>
-          <%= link_to 'Edit', edit_agreement_path(agreement), class: 'btn btn-outline-secondary' %>
-          <%= link_to 'Start repair', start_repair_agreement_path(agreement), class: 'btn btn-outline-secondary' if agreement.technician_id.nil? && has_role?('technician') %>
+          <%= link_to t('show'), agreement, class: 'btn btn-outline-secondary' %>
+          <%= link_to t('edit'), edit_agreement_path(agreement), class: 'btn btn-outline-secondary' %>
+          <%= link_to t('.start_repair'), start_repair_agreement_path(agreement), class: 'btn btn-outline-secondary' if agreement.technician_id.nil? && has_role?('technician') %>
         </div>
       </div>
   <% end %>

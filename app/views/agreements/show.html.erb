@@ -1,40 +1,50 @@
-<div class="col-md-6 border border-light rounded">
+<div class="card col-md-6 border border-light rounded">
   <h1>
-    <%= t('agreement') + ' ' + @agreement.agreement_code %>
+    <%= t('model.agreement') + ' №' + @agreement.agreement_code %>
   </h1>
 
   <p>
-    <strong>IMEI:</strong>
+    <strong><%= t('agreements.model') %>:</strong>
+    <u id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></u>
+  </p>
+
+  <p>
+    <strong><%= t('agreements.imei') %>:</strong>
     <%= @agreement.imei %>
   </p>
 
   <p>
-    <strong>Contents:</strong>
+    <strong><%= t('agreements.contents') %>:</strong>
     <%= @agreement.contents %>
   </p>
 
   <p>
-    <strong>Problem:</strong>
+    <strong><%= t('agreements.problem') %>:</strong>
     <%= @agreement.problem %>
   </p>
 
   <p>
-    <strong>First Name:</strong>
+    <strong><%= t('agreements.first_name') %>:</strong>
     <%= @agreement.first_name %>
   </p>
 
   <p>
-    <strong>Last Name:</strong>
+    <strong><%= t('agreements.last_name') %>:</strong>
     <%= @agreement.last_name %>
   </p>
 
   <p>
-    <strong>Phone Number:</strong>
+    <strong><%= t('agreements.phone_number') %>:</strong>
     <%= @agreement.phone_number %>
   </p>
 
+  <p>
+    <strong><%= t('agreements.status') %>:</strong>
+    <%= t("agreement.#{@agreement.status}") %>
+  </p>
+
   <div class="progress" id="progress_bar" style="height: 30px;">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress_bar_line" style="width: <%= @agreement.percentage || 0 %>%"><%= @agreement.percentage %>% - <%= @agreement.status %></div>
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress_bar_line" style="width: <%= @agreement.percentage || 0 %>%"><%= @agreement.percentage %>%</div>
   </div>
 
   <div class="modal fade" id="update_progress" tabindex="-1" role="dialog" aria-hidden="true">
@@ -56,34 +66,49 @@
     </div>
   </div>
 
-  <%= link_to 'Edit', edit_agreement_path(@agreement), class: 'btn btn-outline-primary' %>
-  <%= link_to 'Print', agreement_path(@agreement, format: :pdf), class: 'btn btn-outline-primary' %>
+  <%= link_to t('edit'), edit_agreement_path(@agreement), class: 'btn btn-outline-primary' %>
+  <%= link_to t('.print'), agreement_path(@agreement, format: :pdf), class: 'btn btn-outline-primary' %>
 </div>
 
 <% unless @request.nil? %>
-    <div class="col-md-6 border border-light rounded">
+    <div class="card col-md-6 border border-light rounded">
       <h1>
-        Request
+        <%= t('model.request') %>
       </h1>
 
       <p>
-        <strong>Problem desc:</strong>
+        <strong><%= t('requests.show.problem_desc') %>:</strong>
         <%= @request.problem_desc %>
       </p>
 
       <p>
-        <strong>First name:</strong>
+        <strong><%= t('requests.first_name') %>:</strong>
         <%= @request.first_name %>
       </p>
 
       <p>
-        <strong>Last name:</strong>
+        <strong><%= t('requests.last_name') %>:</strong>
         <%= @request.last_name %>
       </p>
 
       <p>
-        <strong>Phone number:</strong>
+        <strong><%= t('requests.phone_number') %>:</strong>
         <%= @request.phone_number %>
       </p>
     </div>
 <% end %>
+
+<div class="additional-info-container col-md-6">
+
+</div>
+
+
+<script>
+  $("#additional-info").click(function(){
+      $.ajax({
+          url: '/agreements/<%= @agreement.id%>/additional_device_info',
+          type: 'GET'
+      });
+      $(".additional-info-container").append('<div class="loader" id="loader"></div>');
+  })
+</script>

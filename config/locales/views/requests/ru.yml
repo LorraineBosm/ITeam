@@ -1,0 +1,21 @@
+ru:
+  requests:
+    first_name: "Имя"
+    last_name: "Фамилия"
+    phone_number: "Номер телефона"
+
+    form:
+    index:
+      requests: "Запросы на ремонт"
+    show:
+      problem_desc: "Описание проблемы"
+    start:
+      company_desc: "Привет! Мы какая-то компания, которая умеет чинить телефоны"
+      describe_a_probem_btn: "Рассказать о проблеме"
+      describe_a_probem: "Опиши свою проблему"
+      choose_device_btn: "Выбрать устройство"
+      choose_device_type: "Выбери тип устройства"
+      choose_device_brand: "Выбери марку устройства"
+      choose_device_model: "Выбери модель устройства"
+      tell_about_yourself_btn: "Рассказать о себе"
+      create_request_btn: "Создать заявку"

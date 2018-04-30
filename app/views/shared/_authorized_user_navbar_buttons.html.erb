@@ -1,0 +1,16 @@
+<% if has_role?('acceptor') %>
+    <li><%= link_to t('.agreements'), agreements_path, class: 'nav-link'%></li>
+    <li><%= link_to t('.requests'), requests_path, class: 'nav-link'%></li>
+<% end %>
+
+<% if has_role?('technician') %>
+    <li><%= link_to t('.in_repair'), in_repair_agreements_path, class: 'nav-link'%></li>
+<% end %>
+
+<% if has_role?('analyst') %>
+    <li><%= link_to t('.analytics'), analytics_path, class: 'nav-link'%></li>
+<% end %>
+
+<% if has_role?('customer') %>
+    <li><%= link_to t('.my_profile'), my_profile_profiles_path, class: 'nav-link'%></li>
+<% end %>

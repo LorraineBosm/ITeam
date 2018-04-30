@@ -1,0 +1,14 @@
+$('.loader').remove();
+var parsed_hash = JSON.parse('<%= @parsed_json.html_safe %>');
+
+
+$('.additional-info-container').append('<table class="table table-striped"" id="specifications_table">\n' +
+    '  <tbody>\n');
+for (var key in parsed_hash) {
+    $('#specifications_table').append(
+    `<tr><td>${key}</td><td>${parsed_hash[key]}</td></tr>`
+    )
+}
+
+$('.col-md-12').append('  </tbody>\n' +
+    '</table>')
