@@ -1,0 +1,18 @@
+<h1>My profile</h1>
+
+<div class="card">
+  <div class="card-header">
+    My Agreements
+  </div>
+  <ul class="list-group list-group-flush">
+    <% @agreements.each do |a| %>
+        <li class="list-group-item"><%= a.created_at %> <%= a.status %> <%= a.percentage %></li>
+    <% end %>
+  </ul>
+  <div class="card-footer">
+    <%= form_tag add_agreement_profiles_path do %>
+        <%= text_field_tag "agreements[agreement_code]", nil, class: 'form-control' %>
+        <%= submit_tag nil, class: 'btn btn-outline-success' %>
+    <% end %>
+  </div>
+</div>

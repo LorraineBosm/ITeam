@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180429213310) do
+ActiveRecord::Schema.define(version: 20180429224810) do
+
+  create_table "agreement_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "agreements", force: :cascade do |t|
     t.string "agreement_code", null: false
@@ -36,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180429213310) do
     t.integer "user_id", null: false
     t.integer "agreement_id", null: false
     t.index ["agreement_id"], name: "index_agreements_users_on_agreement_id"
+    t.index ["user_id", "agreement_id"], name: "index_agreements_users_on_user_id_and_agreement_id", unique: true
     t.index ["user_id"], name: "index_agreements_users_on_user_id"
   end
 

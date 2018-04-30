@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :profiles, only: [] do
     collection do
       get :my_profile
+      post :add_agreement
     end
   end
 end
