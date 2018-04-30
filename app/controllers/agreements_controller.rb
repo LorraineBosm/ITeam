@@ -35,7 +35,7 @@ class AgreementsController < ApplicationController
 
   def create
     @agreement = Agreement.new(agreement_params)
-    @agreement.agreement_code = 'AA' + DateTime.now.strftime('%Y%m%d').to_s + Random.rand(10..19).to_s
+    @agreement.agreement_code = DateTime.now.strftime('%y%-m%-d%l%M%S').to_s + Random.rand(100..999).to_s
     @agreement.acceptor_id = current_user.id
 
     if @agreement.save

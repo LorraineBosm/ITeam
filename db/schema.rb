@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180429224810) do
+ActiveRecord::Schema.define(version: 20180430084319) do
 
   create_table "agreement_users", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20180429224810) do
     t.integer "acceptor_id", null: false
     t.integer "technician_id"
     t.integer "status", default: 0, null: false
-    t.integer "percentage"
+    t.integer "percentage", default: 0, null: false
     t.index ["device_model_id"], name: "index_agreements_on_device_model_id"
     t.index ["request_id"], name: "index_agreements_on_request_id"
   end
