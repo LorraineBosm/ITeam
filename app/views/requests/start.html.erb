@@ -34,7 +34,7 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 align-self-center">
               <div class="text"><%= t('.company_desc') %></div>
               <br>
               <a href="#problem" class="btn btn-primary btn-lg btn-block"><%= t('.describe_a_probem_btn') %></a>
@@ -48,7 +48,7 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 align-self-center">
               <div class="text"><%= t('.describe_a_probem') %></div>
               <%= f.text_area :problem_desc, class: 'form-control' %>
               <br>
@@ -63,7 +63,7 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 align-self-center">
               <div class="text"><%= t('.choose_device_type') %></div>
                 <%= f.collection_select :device_type, DeviceType.order(:name), :id, :name, { include_blank: true},
                                         {class: 'form-control text' } %>
@@ -93,7 +93,7 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 align-self-center">
               <div class="text"><%= t('requests.first_name') %></div>
               <%= f.text_field :first_name, class: 'form-control text' %>
               <br>
