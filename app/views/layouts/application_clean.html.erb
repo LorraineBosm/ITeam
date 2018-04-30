@@ -7,6 +7,9 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js' %>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,5 +18,16 @@
   <body>
     <%= custom_bootstrap_flash %>
     <%= yield %>
+
+    <% flash.keys.each do |key| %>
+      <% toastr_key = key %>
+      <% toastr_key = 'info' if key == 'notice' %>
+      <% toastr_key = 'warning' if key == 'alert' %>
+      <script>
+          $(function() {
+              toastr[<%= "#{toastr_key}" %>](<%= "#{flash[key]}" %>);
+          });
+      </script>
+    <% end %>
   </body>
 </html>

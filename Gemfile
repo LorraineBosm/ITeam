@@ -33,9 +33,6 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 # Reset sequence - for proper seeds generation
 gem 'activerecord-reset-pk-sequence', '~> 0.2.1'
 
-# Popups
-gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
-
 # Chartkick (for charts)
 gem 'chartkick', '~> 2.3', '>= 2.3.4'
 gem 'groupdate', '~> 4.0'
@@ -65,7 +62,6 @@ end
 
 group :production do
   gem 'pg', '~> 1.0'
-  gem 'rails_12factor', '~> 0.0.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

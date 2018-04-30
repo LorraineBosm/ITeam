@@ -15,7 +15,6 @@
 @import "bootstrap";
 @import "request/requests";
 @import "agreements";
-@import "toastr.css";
 
 .card-columns {
   @include media-breakpoint-only(xl) {
