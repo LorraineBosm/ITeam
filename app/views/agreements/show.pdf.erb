@@ -105,13 +105,22 @@
             <%= @agreement.contents %>
           </td>
         </tr>
+
+        <tr>
+          <td class="specifications-row">
+            Неисправность
+          </td>
+          <td class="specifications-row">
+            <%= @agreement.problem %>
+          </td>
+        </tr>
       </table>
     <% end %>
 
     <table style="width:100%; margin-top: 80px; margin-left: 150px;">
       <tr>
         <td>
-          Приемщик: &#60;acceptor_name&#62;<br><br><br><br> _________________
+          Приемщик: <%= "#{current_user.last_name} #{current_user.first_name[0]}" %><br><br><br><br> _________________
         </td>
         <td>
           Заказчик: <%= @agreement.last_name + ' ' + @agreement.first_name[0] + '.' %><br><br><br><br> _________________
