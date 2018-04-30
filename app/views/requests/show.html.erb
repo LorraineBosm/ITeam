@@ -1,25 +1,25 @@
-<% unless notice.nil? %>
-    <p id="notice"><%= notice %></p>
-<% end %>
+<h1>
+  <%= t('model.request') %>
+</h1>
 
 <p>
-  <strong>Problem desc:</strong>
+  <strong><%= t('.problem_desc') %>:</strong>
   <%= @request.problem_desc %>
 </p>
 
 <p>
-  <strong>First name:</strong>
+  <strong><%= t('requests.first_name') %>:</strong>
   <%= @request.first_name %>
 </p>
 
 <p>
-  <strong>Last name:</strong>
+  <strong><%= t('requests.last_name') %>:</strong>
   <%= @request.last_name %>
 </p>
 
 <p>
-  <strong>Phone number:</strong>
+  <strong><%= t('requests.phone_number') %>:</strong>
   <%= @request.phone_number %>
 </p>
 
-<%= link_to 'Back', requests_path %>
+<%= link_to t('back'), requests_path %>

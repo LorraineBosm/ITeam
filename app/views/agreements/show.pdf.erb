@@ -1,0 +1,131 @@
+<html>
+  <head>
+    <title>Agreement <%= @agreement.agreement_code %></title>
+    <%= wicked_pdf_stylesheet_link_tag "pdf" %>
+  </head>
+  <body>
+    <table style="width:100%">
+      <tr>
+        <th><img src="https://image.freepik.com/free-icon/mechanical-gears_318-80433.jpg" alt="Mountain View"></th>
+        <th>
+          ООО "АЙТИМ"<br>
+          220220 Республика Беларусь, г. Минск, пр-т Независимости, 25<br>
+          Т: +375 15 555-5555 | Ф: +375 16 666-6666 | E-mail: support@iteam.com<br>
+          УНП 123456789<br>
+          www.iteam.com<br>
+        </th>
+      </tr>
+    </table>
+
+    <div style="width:320px; margin:0 auto; margin-top: 8%">
+      <div style="font-size: 20px;"><b>ДОГОВОР №<%= @agreement.agreement_code %></b></div>
+    </div>
+
+    <div class="agreement-text">
+      <div>
+        1.1. Заказчик поручает, а Исполнитель принимает на себя техническое обслуживание и ремонт.
+      </div>
+
+      <div>
+        1.2. На гарантийное техническое обслуживание и ремонт принимаются товары с неистекшим гарантийным сроком их эксплуатации.
+      </div>
+
+      <div>
+        1.3. Гарантийный срок эксплуатации товаров исчисляется со дня их продажи или обмена, подтвержденного штампом продавца товара в паспорте товара или гарантийном талоне, а при отсутствии такого штампа - товарным чеком, выданным потребителю, или иным документом, подтверждающим покупку. В случае их отсутствия гарантийный срок исчисляется от даты выпуска товара.
+      </div>
+
+      <div>
+        1.4. Гарантийный срок эксплуатации товаров продлевается на время, в течение которого они находились в ремонте и не использовались потребителем из-за обнаруженных дефектов.
+      </div>
+
+      <div>
+        Это время исчисляется от даты приема от потребителя заказа (заявки) на ремонт до даты завершения ремонта, о чем делается соответствующая запись в техническом паспорте или ином заменяющем его документе.
+      </div>
+
+      <div>
+        1.5. По истечении гарантийных сроков службы товаров гарантийные обязательства Исполнителя по отремонтированному товару (послеремонтные гарантии) исчисляются со дня получения (приемки) его из ремонта, а в случае несвоевременного получения - со дня установленного срока исполнения заказа.
+      </div>
+      <div>
+        1.6. При выходе из строя товара в период действия послеремонтного гарантийного срока Исполнитель безвозмездно проводит повторный его ремонт или техническое обслуживание.
+      </div>
+      <div>
+        1.7. Послеремонтный гарантийный срок продлевается на время, в течение которого товар не использовался потребителем из-за повторно обнаружившихся дефектов.
+      </div>
+      <div>
+        Это время исчисляется от даты передачи потребителем товара на повторный ремонт до даты выдачи товара из ремонта.
+      </div>
+      <div>
+        1.8. Гарантийное и послегарантийное техническое обслуживание и ремонт производятся в соответствии с правилами, согласованными договаривающимися сторонами и прилагаемыми к договору.
+      </div>
+    </div>
+
+    <% unless @agreement.device_model.nil? %>
+      <table class="specifications-table">
+        <tr>
+          <td class="specifications-row">
+            Тип устройства
+          </td>
+          <td class="specifications-row">
+            <%= @agreement.device_model.device_brand.device_type.name %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="specifications-row">
+            Производитель устройства
+          </td>
+          <td class="specifications-row">
+            <%= @agreement.device_model.device_brand.full_name %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="specifications-row">
+            Модель устройства
+          </td>
+          <td class="specifications-row">
+            <%= @agreement.device_model.name %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="specifications-row">
+            IMEI устройства
+          </td>
+          <td class="specifications-row">
+            <%= @agreement.imei %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="specifications-row">
+            Комплект
+          </td>
+          <td class="specifications-row">
+            <%= @agreement.contents %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="specifications-row">
+            Неисправность
+          </td>
+          <td class="specifications-row">
+            <%= @agreement.problem %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+
+    <table style="width:100%; margin-top: 80px; margin-left: 150px;">
+      <tr>
+        <td>
+          Приемщик: <%= "#{current_user.last_name} #{current_user.first_name[0]}" %><br><br><br><br> _________________
+        </td>
+        <td>
+          Заказчик: <%= @agreement.last_name + ' ' + @agreement.first_name[0] + '.' %><br><br><br><br> _________________
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

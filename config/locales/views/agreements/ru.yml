@@ -1,0 +1,23 @@
+ru:
+  agreements:
+    first_name: "Имя"
+    last_name: "Фамилия"
+    phone_number: "Номер телефона"
+    device_model: "Модель устройства"
+    imei: "IMEI"
+    contents: "Комплект поставки"
+    problem: "Жалоба"
+    status: "Статус"
+    model: "Модель телефона"
+
+    edit:
+      edit_agreement: "Отредактировать договор"
+    index:
+      agreements: "Договоры"
+      new_agreement: "Новый договор"
+      start_repair: "Приступить к ремонту"
+    new:
+      new_agreement: "Новый договор"
+    show:
+      agreement: "Договор"
+      print: "Печать"

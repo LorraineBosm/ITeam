@@ -1,0 +1,8 @@
+<%= render 'analytics/navlinks' %>
+
+<div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <%= line_chart User.group_by_day(:created_at).count %>
+</div>

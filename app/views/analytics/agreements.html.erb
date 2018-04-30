@@ -1,0 +1,40 @@
+<%= render 'analytics/navlinks' %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        Agreements on Timeline
+      </div>
+      <%= line_chart @agreements.group_by_day(:created_at).count %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Agreements by Device Type
+      </div>
+      <%= column_chart group_by_device_types @agreements %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Agreements by Device Brand
+      </div>
+      <%= column_chart group_by_device_brands @agreements %>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        Agreements by Device Model
+      </div>
+      <%= column_chart group_by_device_models @agreements %>
+    </div>
+  </div>
+</div>

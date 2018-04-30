@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  add_flash_types :success, :info, :warning, :error
 
   def has_role? role
     if current_user.nil? || !current_user.roles.any? {|r| r.name == role}

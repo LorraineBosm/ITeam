@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light <%= 'sticky-top' if locals[:caller] == :start_page %>">
   <a class="navbar-brand" href="#">ITeam</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -6,21 +6,16 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active"><%= link_to t('Home'), root_path, class: 'nav-link' %></li>
-      <% if has_role?('acceptor') %>
-          <li><%= link_to 'Agreements', agreements_path, class: 'nav-link'%></li>
-          <li><%= link_to 'Requests', requests_path, class: 'nav-link'%></li>
-      <% end %>
+      <li class="nav-item active"><%= link_to t('.home'), root_path, class: 'nav-link' %></li>
 
-      <% if has_role?('technician') %>
-          <li><%= link_to 'In Repair', in_repair_agreements_path, class: 'nav-link'%></li>
-      <% end %>
+      <%= render 'shared/start_page_navbar_buttons' if locals[:caller] == :start_page  %>
+      <%= render 'shared/authorized_user_navbar_buttons' %>
 
       <% if user_signed_in? %>
-          <li><%= link_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
+          <li><%= link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'nav-link'%></li>
       <% else %>
-          <li><%= link_to t('devise.sessions.sign_in'), new_user_session_path, class: 'nav-link' %></li>
-          <li><%= link_to t('devise.registrations.sign_up'), new_user_registration_path, class: 'nav-link' %></li>
+          <li><%= link_to t('.sign_in'), new_user_session_path, class: 'nav-link' %></li>
+          <li><%= link_to t('.sign_up'), new_user_registration_path, class: 'nav-link' %></li>
       <% end %>
     </ul>
   </div>

@@ -1,8 +1,4 @@
-<% unless notice.nil? %>
-    <p id="notice"><%= notice %></p>
-<% end %>
-
-<h1>Requests</h1>
+<h1><%= t('.requests') %></h1>
 
 <div class="card-columns">
   <% @requests.each do |request| %>
@@ -11,14 +7,14 @@
           <%= request.created_at %>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">First Name: <%= request.first_name %></li>
-          <li class="list-group-item">Last Name: <%= request.last_name %></li>
-          <li class="list-group-item">Phone Number: <%= request.phone_number %></li>
+          <li class="list-group-item"><%= t('requests.first_name') %>: <%= request.first_name %></li>
+          <li class="list-group-item"><%= t('requests.last_name') %>: <%= request.last_name %></li>
+          <li class="list-group-item"><%= t('requests.phone_number') %>: <%= request.phone_number %></li>
         </ul>
         <div class="card-footer">
-          <%= link_to 'Show', request, class: 'btn btn-outline-secondary' %>
-          <%= link_to 'New agreement', new_agreement_path(request_id: request.id), class: 'btn btn-outline-secondary' unless request.agreement %>
-          <%= link_to 'Destroy', request, method: :delete, class: 'btn btn-outline-danger' unless request.agreement %>
+          <%= link_to t('show'), request, class: 'btn btn-outline-secondary' %>
+          <%= link_to t('agreements.index.new_agreement'), new_agreement_path(request_id: request.id), class: 'btn btn-outline-secondary' unless request.agreement %>
+          <%= link_to t('destroy'), request, method: :delete, class: 'btn btn-outline-danger' unless request.agreement %>
         </div>
       </div>
   <% end %>

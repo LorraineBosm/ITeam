@@ -12,47 +12,46 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :first_name %>
+    <%= form.label t('agreements.first_name') %>
     <%= form.text_field :first_name, id: :agreement_first_name, value: request.first_name, class: 'form-control text' %>
   </div>
 
   <div class="field">
-    <%= form.label :last_name %>
+    <%= form.label t('agreements.last_name') %>
     <%= form.text_field :last_name, id: :agreement_last_name, value: request.last_name, class: 'form-control text' %>
   </div>
 
   <div class="field">
-    <%= form.label :phone_number %>
+    <%= form.label t('agreements.phone_number') %>
     <%= form.text_field :phone_number, id: :agreement_phone_number, value: request.phone_number, class: 'form-control text' %>
   </div>
 
   <div class="field">
-    <%= form.label :device_model %>
+    <%= form.label t('agreements.device_model') %>
     <%= form.grouped_collection_select :device_model_id, DeviceBrand.order(:short_name),
                                     :device_models, :short_name, :id, :name, { include_blank: true, selected: request.device_model_id },
                                     {class: 'form-control text' } %>
   </div>
 
   <div class="field">
-    <%= form.label :imei %>
+    <%= form.label t('agreements.imei') %>
     <%= form.text_field :imei, id: :agreement_imei, class: 'form-control text' %>
   </div>
 
   <div class="field">
-    <%= form.label :contents %>
+    <%= form.label t('agreements.contents') %>
     <%= form.text_area :contents, id: :agreement_contents, class: 'form-control text' %>
   </div>
 
   <div class="field">
-    <%= form.label :problem %>
+    <%= form.label t('agreements.problem') %>
     <%= form.text_area :problem, id: :agreement_problem, value: request.problem_desc, class: 'form-control text' %>
   </div>
 
   <%= form.hidden_field :request_id, value: request.id %>
-  <%= form.hidden_field :device_model_id, value: request.device_model_id %>
 
   <br>
   <div class="actions">
-    <%= form.submit 'Submit', class: 'btn btn-primary btn-block' %>
+    <%= form.submit t('submit'), class: 'btn btn-primary btn-block' %>
   </div>
 <% end %>
