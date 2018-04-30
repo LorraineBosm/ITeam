@@ -1,5 +1,8 @@
-<h1>My profile</h1>
-
+<% if current_user.first_name.nil? && current_user.last_name.nil? %>
+    <h1>Welcome back!</h1>
+<% else %>
+    <h1>Welcome back, <%= "#{current_user.first_name} #{current_user.last_name}"  %>!</h1>
+<% end %>
 <div class="card">
   <div class="card-header">
     My Agreements

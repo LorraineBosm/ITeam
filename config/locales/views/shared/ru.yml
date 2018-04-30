@@ -1,0 +1,16 @@
+ru:
+  shared:
+    authorized_user_navbar_buttons:
+      agreements: "Договоры"
+      requests: "Запросы на ремонт"
+      in_repair: "В ремонте"
+      analytics: "Аналитика"
+      my_profile: "Мой профиль"
+    navbar:
+      home: "Домой"
+      sign_up: "Зарегистрироваться"
+      sign_in: "Войти"
+      sign_out: "Выйти"
+    start_page_navbar_buttons:
+      about_us: "О нас"
+      tell_about_problem: "Рассказать о проблеме"
