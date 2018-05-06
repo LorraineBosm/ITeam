@@ -34,12 +34,12 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 align-self-center">
+            <div class="col-md-6 offset-md-2 align-self-center">
               <div class="text"><%= t('.company_desc') %></div>
               <br>
               <a href="#problem" class="btn btn-primary btn-lg btn-block"><%= t('.describe_a_probem_btn') %></a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3 align-self-center">
               <%= image_tag 'https://image.flaticon.com/icons/svg/236/236842.svg' %>
             </div>
           </div>
@@ -48,13 +48,13 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 align-self-center">
+            <div class="col-md-6 offset-md-2 align-self-center">
               <div class="text"><%= t('.describe_a_probem') %></div>
               <%= f.text_area :problem_desc, class: 'form-control' %>
               <br>
               <a href="#device" class="btn btn-primary btn-lg btn-block text"><%= t('.choose_device_btn') %></a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3 align-self-center">
               <%= image_tag 'https://image.flaticon.com/icons/svg/653/653273.svg'%>
             </div>
           </div>
@@ -63,7 +63,7 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 align-self-center">
+            <div class="col-md-6 offset-md-2 align-self-center">
               <div class="text"><%= t('.choose_device_type') %></div>
                 <%= f.collection_select :device_type, DeviceType.order(:name), :id, :name, { include_blank: true},
                                         {class: 'form-control text' } %>
@@ -84,7 +84,7 @@
               </div>
               <a href="#owner" class="btn btn-primary btn-lg btn-block text"><%= t('.tell_about_yourself_btn') %></a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3 align-self-center">
               <%= image_tag 'https://image.flaticon.com/icons/svg/141/141063.svg' %>
             </div>
           </div>
@@ -93,7 +93,7 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-6 align-self-center">
+            <div class="col-md-6 offset-md-2 align-self-center">
               <div class="text"><%= t('requests.first_name') %></div>
               <%= f.text_field :first_name, class: 'form-control text' %>
               <br>
@@ -105,7 +105,7 @@
               <br>
               <%= f.submit t('.create_request_btn'), class: 'btn btn-primary btn-lg btn-block text' %>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3 align-self-center">
               <%= image_tag 'https://image.flaticon.com/icons/svg/265/265666.svg' %>
             </div>
           </div>
