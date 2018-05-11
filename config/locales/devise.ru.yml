@@ -3,6 +3,13 @@
 
 ru:
   devise:
+    first_name: "Имя"
+    last_name: "Фамилия"
+    email: "Email"
+    password: "Пароль"
+    password_confirmation: "Подтверждение пароля"
+    min_password_length: "символов - минимальная длина пароля"
+    remember_me: "Запомнить меня"
     confirmations:
       confirmed: "Ваша учётная запись успешно подтверждена."
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению вашей учётной записи."
