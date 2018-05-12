@@ -1,21 +1,23 @@
-<% if current_user.first_name.nil? && current_user.last_name.nil? %>
-    <h1><%= t('.welcome_back_message') %>!</h1>
-<% else %>
-    <h1>Welcome back, <%= "#{current_user.first_name} #{current_user.last_name}"  %>!</h1>
-<% end %>
-<div class="card">
-  <div class="card-header">
-    <%= t('.my_agreements') %>
-  </div>
-  <ul class="list-group list-group-flush">
-    <% @agreements.each do |a| %>
-        <li class="list-group-item"><%= a.agreement_code %> - <%= t("agreement.#{a.status}") %> - <%= a.percentage %>%</li>
-    <% end %>
-  </ul>
-  <div class="card-footer">
-    <%= form_tag add_agreement_profiles_path do %>
-        <%= text_field_tag "agreements[agreement_code]", nil, class: 'form-control' %>
-        <%= submit_tag t('submit'), class: 'btn btn-outline-success' %>
-    <% end %>
+<div class="offset-md-3 col-md-6">
+  <% if current_user.first_name.nil? && current_user.last_name.nil? %>
+      <h1><%= t('.welcome_back_message') %>!</h1>
+  <% else %>
+      <h1><%= "#{t('.welcome_back_message')}, #{current_user.first_name} #{current_user.last_name}"  %>!</h1>
+  <% end %>
+  <div class="card">
+    <div class="card-header">
+      <%= t('.my_agreements') %>
+    </div>
+    <ul class="list-group list-group-flush">
+      <% @agreements.each do |a| %>
+          <li class="list-group-item"><%= a.agreement_code %> - <%= t("agreement.#{a.status}") %> - <%= a.percentage %>%</li>
+      <% end %>
+    </ul>
+    <div class="card-footer">
+      <%= form_tag add_agreement_profiles_path do %>
+          <%= text_field_tag "agreements[agreement_code]", nil, class: 'form-control' %>
+          <%= submit_tag t('submit'), class: 'btn btn-outline-success btn-block btn-margin' %>
+      <% end %>
+    </div>
   </div>
 </div>
