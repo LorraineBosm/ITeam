@@ -2,6 +2,7 @@ require 'net/http'
 require 'json'
 
 class AgreementsController < ApplicationController
+  include AgreementsHelper
   before_action :set_agreement, only: [:show, :edit, :update, :destroy, :start_repair, :additional_device_info]
   before_action except: [:start_repair, :in_repair] { has_access?('acceptor') }
   before_action only: [:start_repair, :in_repair, :additional_device_info] { has_access?('technician') }
@@ -52,6 +53,7 @@ class AgreementsController < ApplicationController
     @agreement.update_attributes(agreement_params)
     @agreement.status = :repaired if @agreement.percentage == 100
     if @agreement.save!
+      send_emails(@agreement) if @agreement.percentage == 100
       respond_to do |format|
         format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
         format.js
