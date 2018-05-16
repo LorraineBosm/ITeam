@@ -1,7 +1,9 @@
-<h1><%= t('.agreements') %></h1>
+<div class="page-name"><%= t('.agreements') %></div>
 
 <div>
-  <%= link_to t('.new_agreement'), new_agreement_path, class: 'btn btn-outline-secondary' %>
+  <% if has_role?('acceptor') %>
+    <%= link_to t('.new_agreement'), new_agreement_path, class: 'btn btn-outline-secondary' %>
+  <% end %>
 </div>
 
 <br>
@@ -11,7 +13,7 @@
       <div class="card">
         <div class="card-header">
           <div class="agreement-name">
-            <%= agreement.agreement_code %>
+            <%= "#{t('model.agreement')} №#{agreement.agreement_code}" %>
           </div>
         </div>
         <ul class="list-group list-group-flush">
@@ -20,9 +22,9 @@
           <li class="list-group-item"><%= t('agreements.phone_number') %> <%= agreement.phone_number %></li>
         </ul>
         <div class="card-footer">
-          <%= link_to t('show'), agreement, class: 'btn btn-outline-secondary' %>
-          <%= link_to t('edit'), edit_agreement_path(agreement), class: 'btn btn-outline-secondary' %>
-          <%= link_to t('.start_repair'), start_repair_agreement_path(agreement), class: 'btn btn-outline-secondary' if agreement.technician_id.nil? && has_role?('technician') %>
+          <%= link_to agreement do fa_icon "eye 2x" end %>
+          <%= link_to edit_agreement_path(agreement) do fa_icon "edit 2x" end %>
+          <%= link_to start_repair_agreement_path(agreement) do fa_icon "wrench 2x" end if agreement.technician_id.nil? && has_role?('technician') %>
         </div>
       </div>
   <% end %>
