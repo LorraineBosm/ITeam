@@ -2,7 +2,7 @@ ru:
   shared:
     authorized_user_navbar_buttons:
       agreements: "Договоры"
-      requests: "Запросы на ремонт"
+      requests: "Заявки на ремонт"
       in_repair: "В ремонте"
       analytics: "Аналитика"
       my_profile: "Мой профиль"
