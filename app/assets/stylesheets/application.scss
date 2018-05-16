@@ -15,6 +15,7 @@
 @import "bootstrap";
 @import "request/requests";
 @import "agreements";
+@import "font-awesome.css";
 
 .card-columns {
   @include media-breakpoint-only(xl) {
@@ -63,4 +64,14 @@
 
 .navbar-custom .navbar-nav .nav-link:hover {
   color: #D3D3D3;
+}
+
+.page-name {
+  margin-top: 10px;
+  font-size: 60px;
+}
+
+.fa {
+  color: #808080;
+  margin: 3px;
 }

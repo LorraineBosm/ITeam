@@ -41,6 +41,9 @@ gem 'groupdate', '~> 4.0'
 gem 'wkhtmltopdf-heroku', '~> 2.12', '>= 2.12.4.0'
 gem 'wicked_pdf', '~> 1.1'
 
+# Glyphicons
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
