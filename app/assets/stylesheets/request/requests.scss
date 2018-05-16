@@ -4,12 +4,32 @@
 /*# sourceMappingURL=jquery.fullpage.min.css.map */
 @import "request/jquery.fullpage.min";
 
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
   img {
     display: none;
   }
 }
 
 .text {
+  font-size: 20pt;
+}
+
+.button-text {
   font-size: 14pt;
+}
+
+.section1 {
+  background-image: url("../assets/requests/section1.jpg");
+}
+
+.section2 {
+  background-image: url("../assets/requests/section2.jpg");
+}
+
+.section3 {
+  background-image: url("../assets/requests/section3.jpg");
+}
+
+.section4 {
+  background-image: url("../assets/requests/section4.jpg");
 }

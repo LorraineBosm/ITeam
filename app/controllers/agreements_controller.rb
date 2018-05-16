@@ -2,12 +2,13 @@ require 'net/http'
 require 'json'
 
 class AgreementsController < ApplicationController
+  include AgreementsHelper
   before_action :set_agreement, only: [:show, :edit, :update, :destroy, :start_repair, :additional_device_info]
   before_action except: [:start_repair, :in_repair] { has_access?('acceptor') }
   before_action only: [:start_repair, :in_repair, :additional_device_info] { has_access?('technician') }
 
   def index
-    @agreements = Agreement.all
+    @agreements = Agreement.paginate(page: params[:page], per_page: 6).order('created_at DESC')
   end
 
   def show
@@ -19,7 +20,7 @@ class AgreementsController < ApplicationController
   end
 
   def new
-    redirect_to requests_path if check_exists
+    redirect_to requests_path, error: I18n.t('controllers.agreements.agreement_already_exists') if check_exists
     @agreement = Agreement.new
     if params[:request_id].nil?
       @request = Request.new
@@ -42,7 +43,7 @@ class AgreementsController < ApplicationController
     @agreement.acceptor_id = current_user.id
 
     if @agreement.save
-      redirect_to @agreement, notice: 'Agreement was successfully created.'
+      redirect_to @agreement, notice: I18n.t('controllers.agreements.agreement_created')
     else
       render :new
     end
@@ -52,8 +53,9 @@ class AgreementsController < ApplicationController
     @agreement.update_attributes(agreement_params)
     @agreement.status = :repaired if @agreement.percentage == 100
     if @agreement.save!
+      send_emails(@agreement) if @agreement.percentage == 100
       respond_to do |format|
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
+        format.html { redirect_to @agreement, notice: I18n.t('controllers.agreements.agreement_updated') }
         format.js
       end
     else
@@ -66,7 +68,7 @@ class AgreementsController < ApplicationController
 
   def destroy
     @agreement.destroy
-    redirect_to agreements_url, notice: 'Agreement was successfully destroyed.'
+    redirect_to agreements_url, notice: I18n.t('controllers.agreements.agreement_destroyed')
   end
 
   def start_repair
@@ -75,7 +77,7 @@ class AgreementsController < ApplicationController
   end
 
   def in_repair
-    @agreements = Agreement.where(technician_id: current_user.id, status: 1)
+    @agreements = Agreement.where(technician_id: current_user.id, status: 1).paginate(page: params[:page], per_page: 6).order('created_at DESC')
     render :index
   end
 

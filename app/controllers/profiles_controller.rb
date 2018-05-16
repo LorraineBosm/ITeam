@@ -5,6 +5,10 @@ class ProfilesController < ApplicationController
 
   end
 
+  def company_profile
+
+  end
+
   def add_agreement
     agreement = Agreement.find_by_agreement_code(agreement_params[:agreement_code])
     current_user.agreements << agreement unless agreement.nil?

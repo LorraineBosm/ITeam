@@ -1,6 +1,6 @@
 <% if has_role?('acceptor') %>
-    <li><%= link_to t('.agreements'), agreements_path, class: 'nav-link'%></li>
     <li><%= link_to t('.requests'), requests_path, class: 'nav-link'%></li>
+    <li><%= link_to t('.agreements'), agreements_path, class: 'nav-link'%></li>
 <% end %>
 
 <% if has_role?('technician') %>

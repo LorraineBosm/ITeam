@@ -10,7 +10,4 @@ class AnalyticsController < ApplicationController
   def agreements
     @agreements = Agreement.includes(device_model: [device_brand: [:device_type]])
   end
-
-  def users
-  end
 end

@@ -21,13 +21,13 @@ Rails.application.routes.draw do
     collection do
       get :requests
       get :agreements
-      get :users
     end
   end
 
   resources :profiles, only: [] do
     collection do
       get :my_profile
+      get :company_profile
       post :add_agreement
     end
   end

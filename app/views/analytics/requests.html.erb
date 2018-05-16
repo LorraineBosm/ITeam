@@ -4,7 +4,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        Requests on Timeline
+        <%= t('analytics.agreements_created') %>
       </div>
       <%= line_chart @requests.group_by_day(:created_at).count %>
     </div>
@@ -15,7 +15,7 @@
   <div class="col-md-4">
     <div class="card">
       <div class="card-header">
-        Requests by Device Type
+        <%= t('analytics.agreements.agreements_by_device_type') %>
       </div>
       <%= column_chart group_by_device_types @requests %>
     </div>
@@ -23,7 +23,7 @@
   <div class="col-md-4">
     <div class="card">
       <div class="card-header">
-        Requests by Device Brand
+        <%= t('analytics.agreements.agreements_by_device_brand') %>
       </div>
       <%= column_chart group_by_device_brands @requests %>
     </div>
@@ -32,7 +32,7 @@
   <div class="col-md-4">
     <div class="card">
       <div class="card-header">
-        Requests by Device Model
+        <%= t('analytics.agreements.agreements_by_device_model') %>
       </div>
       <%= column_chart group_by_device_models @requests %>
     </div>

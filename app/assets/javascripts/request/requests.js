@@ -32,6 +32,8 @@ $(document).ready(function() {
         } else {
             $('#request_device_brand').empty()
             $('#request_device_brand').parent().hide()
+            $('#request_device_model_id').empty()
+            $('#request_device_model_id').parent().hide()
         }
 
     });

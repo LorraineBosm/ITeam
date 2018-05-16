@@ -1,3 +1,15 @@
 // Place all the styles related to the Agreements controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#additional-info {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.card-columns.agreement-page {
+  @include media-breakpoint-only(xl) {
+    column-count: 2;
+  }
+}

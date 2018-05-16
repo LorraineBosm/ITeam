@@ -1,0 +1,6 @@
+ru:
+  controllers:
+    requests:
+      request_created: "Заявка успешно создана"
+      request_updated: "Заявка успешно изменена"
+      request_destroyed: "Заявка успешно удалена"
