@@ -6,7 +6,7 @@ ru:
 
     form:
     index:
-      requests: "Запросы на ремонт"
+      requests: "Заявки на ремонт"
     show:
       problem_desc: "Описание проблемы"
     start:
