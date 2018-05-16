@@ -44,6 +44,10 @@ gem 'wicked_pdf', '~> 1.1'
 # Glyphicons
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.4'
 
+# Pagination
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+gem 'will_paginate-bootstrap4', '~> 0.2.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

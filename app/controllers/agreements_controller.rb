@@ -8,7 +8,7 @@ class AgreementsController < ApplicationController
   before_action only: [:start_repair, :in_repair, :additional_device_info] { has_access?('technician') }
 
   def index
-    @agreements = Agreement.all
+    @agreements = Agreement.paginate(page: params[:page], per_page: 6).order('created_at DESC')
   end
 
   def show
@@ -77,7 +77,7 @@ class AgreementsController < ApplicationController
   end
 
   def in_repair
-    @agreements = Agreement.where(technician_id: current_user.id, status: 1)
+    @agreements = Agreement.where(technician_id: current_user.id, status: 1).paginate(page: params[:page], per_page: 6).order('created_at DESC')
     render :index
   end
 

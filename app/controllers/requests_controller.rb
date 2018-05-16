@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
   before_action except: [:start, :create] { has_access?('acceptor') }
 
   def index
-    @requests = Request.includes(:agreement).all
+    @requests = Request.includes(:agreement).paginate(page: params[:page], per_page: 6).order('created_at DESC')
   end
 
   def show
