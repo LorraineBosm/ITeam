@@ -15,6 +15,7 @@
 @import "bootstrap";
 @import "request/requests";
 @import "agreements";
+@import "font-awesome.css";
 
 .card-columns {
   @include media-breakpoint-only(xl) {
@@ -50,4 +51,27 @@
 .btn-margin {
   margin-bottom: 7px;
   margin-top: 7px;
+}
+
+.navbar-brand {
+  color: rgb(255, 255, 255) !important;
+  font-weight: bold;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: rgb(255, 255, 255);
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+  color: #D3D3D3;
+}
+
+.page-name {
+  margin-top: 10px;
+  font-size: 60px;
+}
+
+.fa {
+  color: #808080;
+  margin: 3px;
 }

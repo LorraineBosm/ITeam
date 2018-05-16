@@ -1,25 +1,27 @@
-<h1>
-  <%= t('model.request') %>
-</h1>
+<div class="card col-md-6 offset-md-3 border border-light rounded">
+  <h1>
+    <%= t('model.request') %>
+  </h1>
 
-<p>
-  <strong><%= t('.problem_desc') %>:</strong>
-  <%= @request.problem_desc %>
-</p>
+  <p>
+    <strong><%= t('.problem_desc') %>:</strong>
+    <%= @request.problem_desc %>
+  </p>
 
-<p>
-  <strong><%= t('requests.first_name') %>:</strong>
-  <%= @request.first_name %>
-</p>
+  <p>
+    <strong><%= t('requests.first_name') %>:</strong>
+    <%= @request.first_name %>
+  </p>
 
-<p>
-  <strong><%= t('requests.last_name') %>:</strong>
-  <%= @request.last_name %>
-</p>
+  <p>
+    <strong><%= t('requests.last_name') %>:</strong>
+    <%= @request.last_name %>
+  </p>
 
-<p>
-  <strong><%= t('requests.phone_number') %>:</strong>
-  <%= @request.phone_number %>
-</p>
+  <p>
+    <strong><%= t('requests.phone_number') %>:</strong>
+    <%= @request.phone_number %>
+  </p>
 
-<%= link_to t('back'), requests_path %>
+  <%= link_to t('agreements.index.new_agreement'), new_agreement_path(request_id: @request.id), class: 'btn btn-outline-secondary' unless @request.agreement %>
+</div>

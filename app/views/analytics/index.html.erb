@@ -2,7 +2,21 @@
 
 <div class="card">
   <div class="card-header">
-    Featured
+    <%= t('analytics.users_created') %>
   </div>
   <%= line_chart User.group_by_day(:created_at).count %>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <%= t('analytics.requests_created') %>
+  </div>
+  <%= line_chart Request.group_by_day(:created_at).count %>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <%= t('analytics.agreements_created') %>
+  </div>
+  <%= line_chart Agreement.group_by_day(:created_at).count %>
 </div>
