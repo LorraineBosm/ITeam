@@ -13,7 +13,7 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
 
     if @request.save
-      redirect_to @request, notice: 'Request was successfully created.'
+      redirect_to start_requests_path, notice: 'Запрос был успешно создан'
     else
       render :start, layout: 'application_clean'
     end
