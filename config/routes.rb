@@ -21,7 +21,6 @@ Rails.application.routes.draw do
     collection do
       get :requests
       get :agreements
-      get :users
     end
   end
 

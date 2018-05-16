@@ -1,0 +1,19 @@
+ru:
+  analytics:
+    users_created: "Регистрации по дням"
+    requests_created: "Заявки по дням"
+    agreements_created: "Договоры по дням"
+    index:
+    requests:
+      requests_by_device_type: "Заявки по типам устройств"
+      requests_by_device_brand: "Заявки по брендам"
+      requests_by_device_model: "Заявки по моделям"
+    agreements:
+      agreements_by_device_type: "Договоры по типам устройств"
+      agreements_by_device_brand: "Договоры по брендам"
+      agreements_by_device_model: "Договоры по моделям"
+    navlinks:
+      summary: "Общее"
+      requests: "Заявки"
+      agreements: "Договоры"
+
