@@ -13,7 +13,7 @@ class RequestsController < ApplicationController
     @request = Request.new(request_params)
 
     if @request.save
-      redirect_to start_requests_path, notice: 'Запрос был успешно создан'
+      redirect_to start_requests_path, notice: I18n.t('controllers.requests.request_created')
     else
       render :start, layout: 'application_clean'
     end
@@ -21,7 +21,7 @@ class RequestsController < ApplicationController
 
   def destroy
     @request.destroy
-    redirect_to requests_url, notice: 'Request was successfully destroyed.'
+    redirect_to requests_url, notice: I18n.t('controllers.requests.request_destroyed')
   end
 
   def start

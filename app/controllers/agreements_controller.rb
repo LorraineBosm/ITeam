@@ -43,7 +43,7 @@ class AgreementsController < ApplicationController
     @agreement.acceptor_id = current_user.id
 
     if @agreement.save
-      redirect_to @agreement, notice: 'Agreement was successfully created.'
+      redirect_to @agreement, notice: I18n.t('controllers.agreements.agreement_created')
     else
       render :new
     end
@@ -55,7 +55,7 @@ class AgreementsController < ApplicationController
     if @agreement.save!
       send_emails(@agreement) if @agreement.percentage == 100
       respond_to do |format|
-        format.html { redirect_to @agreement, notice: 'Agreement was successfully updated.' }
+        format.html { redirect_to @agreement, notice: I18n.t('controllers.agreements.agreement_updated') }
         format.js
       end
     else
@@ -68,7 +68,7 @@ class AgreementsController < ApplicationController
 
   def destroy
     @agreement.destroy
-    redirect_to agreements_url, notice: 'Agreement was successfully destroyed.'
+    redirect_to agreements_url, notice: I18n.t('controllers.agreements.agreement_destroyed')
   end
 
   def start_repair

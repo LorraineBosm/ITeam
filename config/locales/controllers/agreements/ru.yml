@@ -1,0 +1,6 @@
+ru:
+  controllers:
+    agreements:
+      agreement_created: "Договор успешно создан"
+      agreement_updated: "Договор успешно изменен"
+      agreement_destroyed: "Договор успешно удален"
