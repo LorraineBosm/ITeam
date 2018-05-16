@@ -1,106 +1,110 @@
-<div class="card col-md-6 border border-light rounded">
-  <h1>
-    <%= t('model.agreement') + ' №' + @agreement.agreement_code %>
-  </h1>
+<div class="card-columns agreement-page">
+  <div class="card col-md-12 border border-light rounded">
+    <h1>
+      <%= t('model.agreement') + ' №' + @agreement.agreement_code %>
+    </h1>
 
-  <p>
-    <strong><%= t('agreements.model') %>:</strong>
-    <a class="additional-info" id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></a>
-  </p>
+    <p>
+      <strong><%= t('agreements.model') %>:</strong>
+      <a class="additional-info" id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></a>
+    </p>
 
-  <p>
-    <strong><%= t('agreements.imei') %>:</strong>
-    <%= @agreement.imei %>
-  </p>
+    <p>
+      <strong><%= t('agreements.imei') %>:</strong>
+      <%= @agreement.imei %>
+    </p>
 
-  <p>
-    <strong><%= t('agreements.contents') %>:</strong>
-    <%= @agreement.contents %>
-  </p>
+    <p>
+      <strong><%= t('agreements.contents') %>:</strong>
+      <%= @agreement.contents %>
+    </p>
 
-  <p>
-    <strong><%= t('agreements.problem') %>:</strong>
-    <%= @agreement.problem %>
-  </p>
+    <p>
+      <strong><%= t('agreements.problem') %>:</strong>
+      <%= @agreement.problem %>
+    </p>
 
-  <p>
-    <strong><%= t('agreements.first_name') %>:</strong>
-    <%= @agreement.first_name %>
-  </p>
+    <p>
+      <strong><%= t('agreements.first_name') %>:</strong>
+      <%= @agreement.first_name %>
+    </p>
 
-  <p>
-    <strong><%= t('agreements.last_name') %>:</strong>
-    <%= @agreement.last_name %>
-  </p>
+    <p>
+      <strong><%= t('agreements.last_name') %>:</strong>
+      <%= @agreement.last_name %>
+    </p>
 
-  <p>
-    <strong><%= t('agreements.phone_number') %>:</strong>
-    <%= @agreement.phone_number %>
-  </p>
+    <p>
+      <strong><%= t('agreements.phone_number') %>:</strong>
+      <%= @agreement.phone_number %>
+    </p>
 
-  <p>
-    <strong><%= t('agreements.status') %>:</strong>
-    <%= t("agreement.#{@agreement.status}") %>
-  </p>
+    <p>
+      <strong><%= t('agreements.status') %>:</strong>
+      <%= t("agreement.#{@agreement.status}") %>
+    </p>
 
-  <div class="progress position-relative" id="progress_bar" style="height: 30px;">
-    <div class="progress-bar" role="progressbar" id="progress_bar_line" style="width: <%= @agreement.percentage || 0 %>%" aria-valuemin="0" aria-valuemax="100">
-      <small class="justify-content-center d-flex position-absolute w-100" id="progress_bar_line_text" style="font-size: 20px; color: black;"><%= @agreement.percentage %>%</small>
+    <div class="progress position-relative" id="progress_bar" style="height: 30px;">
+      <div class="progress-bar" role="progressbar" id="progress_bar_line" style="width: <%= @agreement.percentage || 0 %>%" aria-valuemin="0" aria-valuemax="100">
+        <small class="justify-content-center d-flex position-absolute w-100" id="progress_bar_line_text" style="font-size: 20px; color: black;"><%= @agreement.percentage %>%</small>
+      </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="update_progress" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><%= t('.update_progress') %></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <%= form_with(model: @agreement) do |f|%>
-              <%= f.text_field :percentage, class: 'form-control' %>
-              <%= f.submit class: 'btn btn-block btn-margin btn-outline-secondary', id: 'update_percentage' %>
-          <% end %>
+    <div class="modal fade" id="update_progress" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><%= t('.update_progress') %></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= form_with(model: @agreement) do |f|%>
+                <%= f.text_field :percentage, class: 'form-control' %>
+                <%= f.submit class: 'btn btn-block btn-margin btn-outline-secondary', id: 'update_percentage' %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
+
+    <%= link_to "#{t('edit')} #{t('model.agreement').downcase}", edit_agreement_path(@agreement), class: 'btn btn-outline-secondary btn-margin' if has_role?('acceptor') %>
+    <%= link_to t('.print'), agreement_path(@agreement, format: :pdf), class: 'btn btn-outline-secondary btn-margin' if has_role?('acceptor') %>
   </div>
 
-  <%= link_to "#{t('edit')} #{t('model.agreement').downcase}", edit_agreement_path(@agreement), class: 'btn btn-outline-secondary btn-margin' if has_role?('acceptor') %>
-  <%= link_to t('.print'), agreement_path(@agreement, format: :pdf), class: 'btn btn-outline-secondary btn-margin' if has_role?('acceptor') %>
+  <% unless @request.nil? %>
+      <div class="card col-md-12 border border-light rounded">
+        <h1>
+          <%= t('model.request') %>
+        </h1>
+
+        <p>
+          <strong><%= t('requests.show.problem_desc') %>:</strong>
+          <%= @request.problem_desc %>
+        </p>
+
+        <p>
+          <strong><%= t('requests.first_name') %>:</strong>
+          <%= @request.first_name %>
+        </p>
+
+        <p>
+          <strong><%= t('requests.last_name') %>:</strong>
+          <%= @request.last_name %>
+        </p>
+
+        <p>
+          <strong><%= t('requests.phone_number') %>:</strong>
+          <%= @request.phone_number %>
+        </p>
+      </div>
+  <% end %>
+
+
 </div>
 
-<% unless @request.nil? %>
-    <div class="card col-md-6 border border-light rounded">
-      <h1>
-        <%= t('model.request') %>
-      </h1>
-
-      <p>
-        <strong><%= t('requests.show.problem_desc') %>:</strong>
-        <%= @request.problem_desc %>
-      </p>
-
-      <p>
-        <strong><%= t('requests.first_name') %>:</strong>
-        <%= @request.first_name %>
-      </p>
-
-      <p>
-        <strong><%= t('requests.last_name') %>:</strong>
-        <%= @request.last_name %>
-      </p>
-
-      <p>
-        <strong><%= t('requests.phone_number') %>:</strong>
-        <%= @request.phone_number %>
-      </p>
-    </div>
-<% end %>
-
-<div class="additional-info-container col-md-6">
+<div class="additional-info-container">
 
 </div>
 

@@ -7,3 +7,9 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.card-columns.agreement-page {
+  @include media-breakpoint-only(xl) {
+    column-count: 2;
+  }
+}
