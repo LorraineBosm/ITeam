@@ -20,7 +20,7 @@ class AgreementsController < ApplicationController
   end
 
   def new
-    redirect_to requests_path if check_exists
+    redirect_to requests_path, error: I18n.t('controllers.agreements.agreement_already_exists') if check_exists
     @agreement = Agreement.new
     if params[:request_id].nil?
       @request = Request.new
