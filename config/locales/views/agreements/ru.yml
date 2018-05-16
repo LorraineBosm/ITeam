@@ -21,3 +21,4 @@ ru:
     show:
       agreement: "Договор"
       print: "Печать"
+      update_progress: "Обновить прогресс"

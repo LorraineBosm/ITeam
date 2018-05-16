@@ -5,7 +5,7 @@
 
   <p>
     <strong><%= t('agreements.model') %>:</strong>
-    <u id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></u>
+    <a class="additional-info" id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></a>
   </p>
 
   <p>
@@ -43,31 +43,33 @@
     <%= t("agreement.#{@agreement.status}") %>
   </p>
 
-  <div class="progress" id="progress_bar" style="height: 30px;">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" id="progress_bar_line" style="width: <%= @agreement.percentage || 0 %>%"><%= @agreement.percentage %>%</div>
+  <div class="progress position-relative" id="progress_bar" style="height: 30px;">
+    <div class="progress-bar" role="progressbar" id="progress_bar_line" style="width: <%= @agreement.percentage || 0 %>%" aria-valuemin="0" aria-valuemax="100">
+      <small class="justify-content-center d-flex position-absolute w-100" id="progress_bar_line_text" style="font-size: 20px; color: black;"><%= @agreement.percentage %>%</small>
+    </div>
   </div>
 
   <div class="modal fade" id="update_progress" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Update Progress</h5>
+          <h5 class="modal-title"><%= t('.update_progress') %></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <%= form_with(model: @agreement) do |f|%>
-              <%= f.text_field :percentage %>
-              <%= f.submit class: 'btn btn-primary', id: 'update_percentage' %>
+              <%= f.text_field :percentage, class: 'form-control' %>
+              <%= f.submit class: 'btn btn-block btn-margin btn-outline-secondary', id: 'update_percentage' %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
 
-  <%= link_to t('edit'), edit_agreement_path(@agreement), class: 'btn btn-outline-primary' %>
-  <%= link_to t('.print'), agreement_path(@agreement, format: :pdf), class: 'btn btn-outline-primary' %>
+  <%= link_to "#{t('edit')} #{t('model.agreement').downcase}", edit_agreement_path(@agreement), class: 'btn btn-outline-secondary btn-margin' if has_role?('acceptor') %>
+  <%= link_to t('.print'), agreement_path(@agreement, format: :pdf), class: 'btn btn-outline-secondary btn-margin' if has_role?('acceptor') %>
 </div>
 
 <% unless @request.nil? %>
@@ -109,6 +111,7 @@
           url: '/agreements/<%= @agreement.id%>/additional_device_info',
           type: 'GET'
       });
+      $('.additional-info').removeAttr("id");
       $(".additional-info-container").append('<div class="loader" id="loader"></div>');
   })
 </script>
