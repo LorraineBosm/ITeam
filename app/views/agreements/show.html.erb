@@ -4,10 +4,12 @@
       <%= t('model.agreement') + ' №' + @agreement.agreement_code %>
     </h1>
 
-    <p>
-      <strong><%= t('agreements.model') %>:</strong>
-      <a class="additional-info" id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></a>
-    </p>
+    <% unless @agreement.device_model.nil? %>
+      <p>
+        <strong><%= t('agreements.model') %>:</strong>
+        <a class="additional-info" id="additional-info"><%= "#{@agreement.device_model.device_brand.short_name} #{@agreement.device_model.name}" %></a>
+      </p>
+    <% end %>
 
     <p>
       <strong><%= t('agreements.imei') %>:</strong>
