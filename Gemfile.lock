@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/randym/axlsx.git
+  revision: c593a08b2a929dac7aa8dc418b55e26b4c49dc34
+  specs:
+    axlsx (3.0.0.pre)
+      htmlentities (~> 4.3, >= 4.3.4)
+      mimemagic (~> 0.3)
+      nokogiri (~> 1.8, >= 1.8.2)
+      rubyzip (~> 1.2, >= 1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -44,6 +54,9 @@ GEM
     arel (8.0.0)
     autoprefixer-rails (8.4.1)
       execjs
+    axlsx_rails (0.5.2)
+      actionpack (>= 3.1)
+      axlsx (>= 2.0.1)
     bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap (4.1.1)
@@ -79,6 +92,7 @@ GEM
       activesupport (>= 4.2.0)
     groupdate (4.0.0)
       activesupport (>= 4.2)
+    htmlentities (4.3.4)
     i18n (1.0.1)
       concurrent-ruby (~> 1.0)
     jquery-rails (4.3.3)
@@ -95,6 +109,7 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     method_source (0.9.0)
+    mimemagic (0.3.2)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
@@ -191,6 +206,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-reset-pk-sequence (~> 0.2.1)
+  axlsx!
+  axlsx_rails
   bootstrap (~> 4.0)
   byebug
   capybara (~> 2.13)

@@ -1,13 +1,32 @@
 <%= render 'analytics/navlinks' %>
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8">
     <div class="card">
       <div class="card-header">
         <%= t('analytics.requests_created') %>
       </div>
-      <%= line_chart @agreements.group_by_day(:created_at).count %>
+      <%= line_chart @agreements.group_by_day(:created_at).count, download: true %>
     </div>
+  </div>
+  <div class="col-md-4">
+    <%= form_tag(controller: :agreements, action: :export) do %>
+        <div class="card" style="padding: 10px; margin: 8px;">
+          <div class="card-block">
+            <div style="padding: 5px">
+              <%= label_tag 'Начальная дата' %><br>
+              <%= date_field_tag :start_date, nil, class: 'form-control' %>
+            </div>
+            <div style="padding: 5px">
+              <%= label_tag 'Конечная дата' %><br>
+              <%= date_field_tag :end_date, nil, class: 'form-control' %>
+            </div>
+            <%= submit_tag "CSV", value: 'csv', name: 'format', class: 'btn btn-outline-secondary' %>
+            <%= submit_tag "XLS", value: 'xls', name: 'format', class: 'btn btn-outline-secondary' %>
+            <%= submit_tag "XLSX", value: 'xlsx', name: 'format', class: 'btn btn-outline-secondary' %>
+          </div>
+        </div>
+    <% end %>
   </div>
 </div>
 
@@ -17,7 +36,7 @@
       <div class="card-header">
         <%= t('analytics.requests.requests_by_device_type') %>
       </div>
-      <%= column_chart group_by_device_types @agreements %>
+      <%= column_chart (group_by_device_types @agreements), download: true %>
     </div>
   </div>
   <div class="col-md-4">
@@ -25,7 +44,7 @@
       <div class="card-header">
         <%= t('analytics.requests.requests_by_device_brand') %>
       </div>
-      <%= column_chart group_by_device_brands @agreements %>
+      <%= column_chart (group_by_device_brands @agreements), download: true %>
     </div>
   </div>
 
@@ -34,7 +53,7 @@
       <div class="card-header">
         <%= t('analytics.requests.requests_by_device_model') %>
       </div>
-      <%= column_chart group_by_device_models @agreements %>
+      <%= column_chart (group_by_device_models @agreements), download: true %>
     </div>
   </div>
 </div>

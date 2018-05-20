@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Договоры">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">agreement_code</Data></Cell>
+        <Cell><Data ss:Type="String">imei</Data></Cell>
+        <Cell><Data ss:Type="String">contents</Data></Cell>
+        <Cell><Data ss:Type="String">problem</Data></Cell>
+        <Cell><Data ss:Type="String">first_name</Data></Cell>
+        <Cell><Data ss:Type="String">last_name</Data></Cell>
+        <Cell><Data ss:Type="String">phone_number</Data></Cell>
+        <Cell><Data ss:Type="String">created_at</Data></Cell>
+      </Row>
+      <% @agreements.each do |agreement| %>
+          <Row>
+            <Cell><Data ss:Type="String"><%= agreement.agreement_code %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= agreement.imei %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= agreement.contents %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= agreement.problem %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= agreement.first_name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= agreement.last_name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= agreement.phone_number %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= agreement.created_at %></Data></Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

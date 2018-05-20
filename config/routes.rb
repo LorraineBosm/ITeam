@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :in_repair
+      post :export
     end
   end
 
