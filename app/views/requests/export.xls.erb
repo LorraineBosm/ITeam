@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Запросы">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">problem_desc</Data></Cell>
+        <Cell><Data ss:Type="String">first_name</Data></Cell>
+        <Cell><Data ss:Type="String">last_name</Data></Cell>
+        <Cell><Data ss:Type="String">phone_number</Data></Cell>
+        <Cell><Data ss:Type="String">created_at</Data></Cell>
+      </Row>
+      <% @requests.each do |request| %>
+          <Row>
+            <Cell><Data ss:Type="String"><%= request.problem_desc %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= request.first_name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= request.last_name %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= request.phone_number %></Data></Cell>
+            <Cell><Data ss:Type="String"><%= request.created_at %></Data></Cell>
+          </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>
