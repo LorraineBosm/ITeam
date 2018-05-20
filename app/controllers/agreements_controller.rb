@@ -6,6 +6,7 @@ class AgreementsController < ApplicationController
   before_action :set_agreement, only: [:show, :edit, :update, :destroy, :start_repair, :additional_device_info]
   before_action except: [:start_repair, :in_repair] { has_access?('acceptor') }
   before_action only: [:start_repair, :in_repair, :additional_device_info] { has_access?('technician') }
+  before_action :agreements_filtered_by_date, only: [:export]
 
   def index
     @agreements = Agreement.paginate(page: params[:page], per_page: 6).order('created_at DESC')
@@ -81,6 +82,21 @@ class AgreementsController < ApplicationController
     render :index
   end
 
+  def export
+    respond_to do |format|
+      format.html
+      format.csv do
+        send_data @agreements.to_csv, filename: 'agreements.csv'
+      end
+      format.xls {
+        response.headers['Content-Disposition'] = 'attachment; filename="agreements.xls"'
+      }
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="agreements.xlsx"'
+      }
+    end
+  end
+
   def additional_device_info
     allowed_keys = %w(devicename brand technology gprs edge announced status dimensions weight sim)
     token = 'dd8bbae67793cbd9001e08e3bc6178e79b6d424818e53940'
@@ -105,5 +121,21 @@ class AgreementsController < ApplicationController
   def check_exists
     return false if params[:request_id].nil? || Agreement.where(request_id: params[:request_id]).empty?
     true
+  end
+
+  def agreements_filtered_by_date
+    if empty_date?(params[:start_date]) && empty_date?(params[:end_date])
+      @agreements = Agreement.all
+    elsif empty_date?(params[:start_date])
+      @agreements = Agreement.where("created_at <= ?", params[:end_date])
+    elsif empty_date?(params[:end_date])
+      @agreements = Agreement.where("created_at >= ?", params[:start_date])
+    else
+      @agreements = Agreement.where(created_at: params[:start_date]..params[:end_date])
+    end
+  end
+
+  def empty_date? date
+    (date.nil? || !date.present?) ? true : false
   end
 end
