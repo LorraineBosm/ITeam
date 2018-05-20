@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Запросы") do |sheet|
+  sheet.add_row ['problem_desc', 'first_name', 'last_name', 'phone_number', 'created_at']
+  @requests.each do |request|
+  sheet.add_row [request.problem_desc, request.first_name, request.last_name, request.phone_number, request.created_at]
+  end
+end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :requests, except: [:new, :update, :edit] do
     collection do
       get :start
+      post :export
     end
   end
   resources :agreements do

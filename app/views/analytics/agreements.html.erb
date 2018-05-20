@@ -1,7 +1,7 @@
 <%= render 'analytics/navlinks' %>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-9">
     <div class="card">
       <div class="card-header">
         <%= t('analytics.requests_created') %>
@@ -9,7 +9,7 @@
       <%= line_chart @agreements.group_by_day(:created_at).count, download: true %>
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <%= form_tag(controller: :agreements, action: :export) do %>
         <div class="card" style="padding: 10px; margin: 8px;">
           <div class="card-block">

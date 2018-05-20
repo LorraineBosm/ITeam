@@ -19,7 +19,7 @@ class Agreement < ApplicationRecord
 
   def self.to_csv(options = {})
     attributes = %w{agreement_code imei contents problem first_name last_name phone_number created_at}
-    CSV.generate(encoding: Encoding::WINDOWS_1251) do |csv|
+    CSV.generate(encoding: Encoding::UTF_8) do |csv|
       csv << attributes
       all.each do |risk|
         csv << risk.attributes.values_at(*attributes)

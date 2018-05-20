@@ -97,7 +97,6 @@ class AgreementsController < ApplicationController
     end
   end
 
-
   def additional_device_info
     allowed_keys = %w(devicename brand technology gprs edge announced status dimensions weight sim)
     token = 'dd8bbae67793cbd9001e08e3bc6178e79b6d424818e53940'
